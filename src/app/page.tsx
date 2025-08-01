@@ -180,9 +180,6 @@ export default function Home() {
             <div className='flex justify-between items-center h-16'>
               <div className='flex items-center'>
                 <WeplayerLogo className='h-8 w-auto' />
-                <span className='ml-2 text-xl font-bold text-gray-900'>
-                  We Player
-                </span>
               </div>
               <div className='hidden md:flex items-center space-x-8'>
                 <a
