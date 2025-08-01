@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sgMail from '@sendgrid/mail';
+import { Resend } from 'resend';
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+const resend = new Resend('re_S7xCwayp_8R6a98tmUSbBPN3XWS8UFKH2');
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,52 +36,47 @@ export async function POST(request: NextRequest) {
     // Log del mensaje
     console.log('📧 NUEVO MENSAJE DE CONTACTO:', messageData);
 
-    // Enviar email con SendGrid (si está configurado)
-    if (process.env.SENDGRID_API_KEY) {
-      try {
-        const msg = {
-          to: 'ingenieria@wetechar.com', // Email de destino
-          from: 'noreply@weplayer-landing.vercel.app', // Email de origen (dominio público)
-          subject: `Nuevo contacto desde We Player - ${messageData.nombre}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">
-                📧 Nuevo Mensaje de Contacto
-              </h2>
+    // Enviar email con Resend
+    try {
+      await resend.emails.send({
+        from: 'onboarding@resend.dev',
+        to: 'tecnopulsar@gmail.com',
+        subject: `Nuevo contacto desde We Player - ${messageData.nombre}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">
+              📧 Nuevo Mensaje de Contacto
+            </h2>
+            
+            <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+              <h3 style="color: #1e293b; margin-top: 0;">Información del Contacto</h3>
               
-              <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="color: #1e293b; margin-top: 0;">Información del Contacto</h3>
-                
-                <p><strong>👤 Nombre:</strong> ${messageData.nombre}</p>
-                <p><strong>📧 Email:</strong> ${messageData.email}</p>
-                <p><strong>💬 Mensaje:</strong></p>
-                <div style="background-color: white; padding: 15px; border-radius: 4px; border-left: 4px solid #2563eb;">
-                  ${messageData.mensaje.replace(/\n/g, '<br>')}
-                </div>
-              </div>
-              
-              <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; font-size: 14px; color: #64748b;">
-                <p><strong>📅 Fecha:</strong> ${new Date(messageData.fecha).toLocaleString('es-AR')}</p>
-                <p><strong>🌐 IP:</strong> ${messageData.ip || 'No disponible'}</p>
-                <p><strong>🔗 Origen:</strong> Landing Page We Player</p>
-              </div>
-              
-              <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b;">
-                <p>Este email fue enviado automáticamente desde el formulario de contacto de We Player.</p>
-                <p style="font-size: 12px;">© 2025 We Tech. Todos los derechos reservados.</p>
+              <p><strong>👤 Nombre:</strong> ${messageData.nombre}</p>
+              <p><strong>📧 Email:</strong> ${messageData.email}</p>
+              <p><strong>💬 Mensaje:</strong></p>
+              <div style="background-color: white; padding: 15px; border-radius: 4px; border-left: 4px solid #2563eb;">
+                ${messageData.mensaje.replace(/\n/g, '<br>')}
               </div>
             </div>
-          `,
-        };
+            
+            <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; font-size: 14px; color: #64748b;">
+              <p><strong>📅 Fecha:</strong> ${new Date(messageData.fecha).toLocaleString('es-AR')}</p>
+              <p><strong>🌐 IP:</strong> ${messageData.ip || 'No disponible'}</p>
+              <p><strong>🔗 Origen:</strong> Landing Page We Player</p>
+            </div>
+            
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b;">
+              <p>Este email fue enviado automáticamente desde el formulario de contacto de We Player.</p>
+              <p style="font-size: 12px;">© 2025 We Tech. Todos los derechos reservados.</p>
+            </div>
+          </div>
+        `
+      });
 
-        await sgMail.send(msg);
-        console.log('✅ Email enviado exitosamente con SendGrid');
-      } catch (emailError) {
-        console.error('❌ Error al enviar email con SendGrid:', emailError);
-        // Continuar sin fallar el formulario si el email falla
-      }
-    } else {
-      console.log('ℹ️ SENDGRID_API_KEY no configurado, solo guardando en logs');
+      console.log('✅ Email enviado exitosamente con Resend');
+    } catch (emailError) {
+      console.error('❌ Error al enviar email con Resend:', emailError);
+      // Continuar sin fallar el formulario si el email falla
     }
 
     // Simular delay para que parezca real
