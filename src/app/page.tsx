@@ -237,9 +237,6 @@ export default function Home() {
                   <span className='text-weplayer-blue block'>
                     Cartelería Digital We Player
                   </span>
-                  <span className='text-weplayer-red block text-3xl md:text-4xl font-medium mt-2'>
-                    We Player
-                  </span>
                 </h1>
                 <p className='text-xl text-gray-600 mb-8 max-w-3xl mx-auto lg:mx-0'>
                   Gestiona, programa y controla tu cartelería digital desde una
@@ -360,9 +357,6 @@ export default function Home() {
             >
               <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
                 Características Principales
-                <span className='text-weplayer-red block text-2xl md:text-3xl font-medium mt-1'>
-                  We Player
-                </span>
               </h2>
               <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
                 Todo lo que necesitas para gestionar tu cartelería digital de
