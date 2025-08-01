@@ -86,9 +86,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'tu-google-verification-code',
-    yandex: 'tu-yandex-verification-code',
-    yahoo: 'tu-yahoo-verification-code',
+    google: 'googled1e17bc0538196b9.html',
+    // yandex: 'tu-yandex-verification-code',
+    // yahoo: 'tu-yahoo-verification-code',
   },
 };
 
