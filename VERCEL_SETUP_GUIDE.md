@@ -31,25 +31,7 @@ Value: G-XXXXXXXXXX (tu ID de GA4)
 Environment: Production, Preview, Development
 ```
 
-#### **📧 EmailJS (Opcional):**
 
-```
-Name: NEXT_PUBLIC_EMAILJS_SERVICE_ID
-Value: service_weplayer_landing
-Environment: Production, Preview, Development
-```
-
-```
-Name: NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-Value: template_weplayer_contact
-Environment: Production, Preview, Development
-```
-
-```
-Name: NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-Value: YOUR_EMAILJS_PUBLIC_KEY
-Environment: Production, Preview, Development
-```
 
 ### **3. Guardar y Redeploy:**
 
@@ -105,8 +87,8 @@ Environment: Production, Preview, Development
 
 **Solución:**
 
-1. Verifica las variables de EmailJS
-2. Asegúrate de que el servicio esté configurado
+1. Verifica que la API route esté funcionando
+2. Revisa los logs de Vercel para ver los mensajes
 3. Verifica la consola del navegador para errores
 
 ---

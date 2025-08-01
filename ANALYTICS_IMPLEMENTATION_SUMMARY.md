@@ -268,6 +268,7 @@ Environment: Production, Preview, Development
 - ✅ **Error tracking en tiempo real**
 - ✅ **Eventos personalizados**
 - ✅ **Performance monitoring**
+- ✅ **API route para formulario de contacto**
 
 ### **🔗 URLs Importantes:**
 - **URL de Producción**: https://weplayer-landing-qcyxxinqt-tecnopulsars-projects.vercel.app

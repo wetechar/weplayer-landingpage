@@ -23,7 +23,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { WeplayerLogo } from '../components/WeplayerLogo';
-import { EMAILJS_CONFIG } from '../config/emailjs';
+
 import {
   useAnalytics,
   ScrollTracker,
