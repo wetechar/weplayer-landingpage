@@ -2,6 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 
+// Declaración de tipo para PerformanceEventTiming
+interface PerformanceEventTiming extends PerformanceEntry {
+  processingStart: number;
+  processingEnd: number;
+  target?: EventTarget;
+}
+
 // Componente para tracking de engagement con Vercel Analytics
 export const VercelAnalyticsTracker = () => {
   const pageLoadTime = useRef<number>(Date.now());
@@ -160,7 +167,8 @@ export const PerformanceTracker = () => {
           }
           
           if (entry.entryType === 'first-input') {
-            const fid = entry.processingStart - entry.startTime;
+            const fidEntry = entry as PerformanceEventTiming;
+            const fid = fidEntry.processingStart - fidEntry.startTime;
             
             if (typeof window !== 'undefined' && (window as any).va) {
               (window as any).va('track', 'fid', {
