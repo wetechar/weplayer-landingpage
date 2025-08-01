@@ -6,7 +6,17 @@
     "dev": "next dev -p 3003",
     "build": "next build",
     "start": "next start -p 3003",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:full": "next dev -p 3003",
+    "video:optimize": "node scripts/optimize-video.js",
+    "video:setup": "scripts/setup-video-complete.bat",
+    "video:copy": "scripts/copy-to-display.bat",
+    "video:optimize-simple": "scripts/optimize-video-simple.bat",
+    "deploy": "scripts/deploy-vercel.bat",
+    "deploy:ps": "powershell -ExecutionPolicy Bypass -File scripts/deploy-vercel.ps1",
+    "test:api": "node scripts/test-contact-api.js",
+    "test:api:prod": "node scripts/test-production-api.js",
+    "verify:analytics": "node scripts/verify-analytics.js"
   },
   "dependencies": {
     "react": "^18",
@@ -14,7 +24,9 @@
     "next": "14.2.5",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.263.1",
-    "@emailjs/browser": "^4.4.1"
+    "@emailjs/browser": "^4.4.1",
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10"
   },
   "devDependencies": {
     "typescript": "^5",

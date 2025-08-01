@@ -42,3 +42,22 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Large video files and original/optimized folders
+public/videos/original/
+public/videos/optimized/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Documentation and scripts (not needed in production)
+/docs/
+/scripts/
+
+# Video files that shouldn't be deployed
+public/videos/original/
+public/videos/optimized/
+
+.vercel

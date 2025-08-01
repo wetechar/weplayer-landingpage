@@ -22,14 +22,24 @@ import {
   ArrowRight,
   ChevronRight,
 } from 'lucide-react';
-import { WeplayerLogo } from '@/components/WeplayerLogo';
-import { EMAILJS_CONFIG } from '@/config/emailjs';
+import { WeplayerLogo } from '../components/WeplayerLogo';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 import {
   useAnalytics,
   ScrollTracker,
   ButtonTracker,
   FormTracker,
-} from '@/components/Analytics';
+  TimeOnPageTracker,
+  VideoTracker,
+  HoverTracker,
+} from '../components/Analytics';
+import {
+  VercelAnalyticsTracker,
+  InteractionTracker,
+  PerformanceTracker,
+  ErrorTracker,
+  useVercelAnalytics,
+} from '../components/VercelAnalytics';
 
 function ClientOnly({ children }: { children: React.ReactNode }) {
   const [hasMounted, setHasMounted] = useState(false);
@@ -44,6 +54,11 @@ function ClientOnly({ children }: { children: React.ReactNode }) {
 
 export default function Home() {
   const { trackEvent } = useAnalytics();
+  const {
+    trackEvent: trackVercelEvent,
+    trackConversion,
+    trackFeatureUsage,
+  } = useVercelAnalytics();
 
   const [formData, setFormData] = useState({
     nombre: '',
@@ -51,6 +66,7 @@ export default function Home() {
     mensaje: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [submitStatus, setSubmitStatus] = useState<
     'idle' | 'success' | 'error'
   >('idle');
@@ -83,23 +99,59 @@ export default function Home() {
         throw new Error('Por favor ingresa un email válido');
       }
 
-      // Simular envío exitoso (para demo)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Enviar datos a la API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nombre: formData.nombre.trim(),
+          email: formData.email.trim(),
+          mensaje: formData.mensaje.trim(),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al enviar el formulario');
+      }
 
       setSubmitStatus('success');
       setFormData({ nombre: '', email: '', mensaje: '' });
 
-      // Mostrar mensaje de éxito
-      console.log('✅ Formulario enviado exitosamente');
-      console.log('📧 Datos del formulario:', {
-        nombre: formData.nombre,
-        email: formData.email,
-        mensaje: formData.mensaje,
-        fecha: new Date().toISOString(),
+      // Trackear evento de éxito
+      trackEvent({
+        action: 'form_submit_success',
+        category: 'contact',
+        label: 'contact_form',
       });
+
+      // Trackear conversión con Vercel Analytics
+      trackConversion('contact_form_submit', 1);
+      trackVercelEvent('form_submit_success', {
+        form_type: 'contact',
+        user_email: formData.email,
+      });
+
+      console.log('✅ Formulario enviado exitosamente');
     } catch (error: any) {
       console.error('❌ Error al enviar formulario:', error);
       setSubmitStatus('error');
+
+      // Trackear evento de error
+      trackEvent({
+        action: 'form_submit_error',
+        category: 'contact',
+        label: 'contact_form',
+      });
+
+      // Trackear error con Vercel Analytics
+      trackVercelEvent('form_submit_error', {
+        form_type: 'contact',
+        error_message: error.message,
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -116,6 +168,11 @@ export default function Home() {
   return (
     <ClientOnly>
       <ScrollTracker />
+      <TimeOnPageTracker />
+      <VercelAnalyticsTracker />
+      <InteractionTracker />
+      <PerformanceTracker />
+      <ErrorTracker />
       <div className='min-h-screen bg-gradient-hero'>
         {/* Navigation */}
         <nav className='fixed top-0 w-full nav-glass z-50'>
@@ -170,11 +227,13 @@ export default function Home() {
           {/* Elemento decorativo rojo */}
           <div className='absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-weplayer-red to-transparent opacity-60'></div>
           <div className='max-w-7xl mx-auto'>
-            <div className='text-center'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
+              {/* Contenido de texto */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
+                className='text-center lg:text-left'
               >
                 <h1 className='text-4xl md:text-6xl font-bold text-gray-900 mb-6'>
                   Solución Completa para
@@ -185,12 +244,12 @@ export default function Home() {
                     We Player
                   </span>
                 </h1>
-                <p className='text-xl text-gray-600 mb-8 max-w-3xl mx-auto'>
+                <p className='text-xl text-gray-600 mb-8 max-w-3xl mx-auto lg:mx-0'>
                   Gestiona, programa y controla tu cartelería digital desde una
                   plataforma centralizada. Monitoreo en tiempo real,
                   programación avanzada y análisis detallado.
                 </p>
-                <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+                <div className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
                   <ButtonTracker
                     action='click'
                     category='hero'
@@ -220,6 +279,67 @@ export default function Home() {
                       Solicitar Información
                     </motion.button>
                   </ButtonTracker>
+                </div>
+              </motion.div>
+
+              {/* Preview del video */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className='relative'
+              >
+                <div className='bg-white p-6 rounded-xl shadow-2xl card-hover border border-gray-200'>
+                  <h3 className='text-xl font-semibold text-gray-900 mb-4 text-center'>
+                    Vista Previa del Demo
+                  </h3>
+                  <div
+                    className='relative group cursor-pointer rounded-lg overflow-hidden'
+                    onClick={() => {
+                      scrollToDemo();
+                      trackEvent({
+                        action: 'preview_click',
+                        category: 'engagement',
+                        label: 'hero_preview',
+                      });
+                    }}
+                  >
+                    <img
+                      src='/videos/display/demo-preview.gif'
+                      alt='Preview del demo de We Player'
+                      className='w-full rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105'
+                      onLoad={() =>
+                        trackEvent({
+                          action: 'preview_load',
+                          category: 'engagement',
+                          label: 'hero_preview',
+                        })
+                      }
+                      onError={() =>
+                        trackEvent({
+                          action: 'preview_error',
+                          category: 'engagement',
+                          label: 'hero_preview',
+                        })
+                      }
+                    />
+                    <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center'>
+                      <div className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-110'>
+                        <Play className='w-16 h-16 text-white drop-shadow-lg' />
+                      </div>
+                    </div>
+                  </div>
+                  <p className='text-sm text-gray-600 mt-4 text-center'>
+                    Haz clic para ver el demo completo
+                  </p>
+                  <div className='mt-4 text-center'>
+                    <div className='inline-flex items-center gap-2 bg-gradient-to-r from-weplayer-red/10 to-weplayer-blue/10 px-4 py-2 rounded-full'>
+                      <Zap className='w-4 h-4 text-weplayer-red' />
+                      <span className='text-sm font-medium text-gray-700'>
+                        Video optimizado • 1.1MB • Carga rápida
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -253,61 +373,271 @@ export default function Home() {
               </p>
             </motion.div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative'>
               {[
                 {
                   icon: <Calendar className='w-8 h-8' />,
                   title: 'Programación Avanzada',
                   description:
                     'Crea programaciones complejas con días específicos, horarios personalizados y eventos anuales.',
+                  screenshot: '/images/screenshots/schedule.png',
                 },
                 {
                   icon: <Smartphone className='w-8 h-8' />,
                   title: 'Gestión de Dispositivos',
                   description:
                     'Monitorea y controla todos tus dispositivos desde una interfaz centralizada.',
+                  screenshot: '/images/screenshots/devices.png',
                 },
                 {
                   icon: <BarChart3 className='w-8 h-8' />,
                   title: 'Análisis en Tiempo Real',
                   description:
                     'Obtén estadísticas detalladas de reproducción, estado de dispositivos y rendimiento.',
+                  screenshot: '/images/screenshots/devices.png',
                 },
                 {
                   icon: <Users className='w-8 h-8' />,
                   title: 'Gestión de Grupos',
                   description:
                     'Organiza tus dispositivos en grupos para una gestión más eficiente.',
+                  screenshot: '/images/screenshots/groups.png',
                 },
                 {
                   icon: <Zap className='w-8 h-8' />,
                   title: 'Sincronización Automática',
                   description:
                     'Los dispositivos se sincronizan automáticamente con el servidor central.',
+                  screenshot: '/images/screenshots/devices.png',
                 },
                 {
                   icon: <Shield className='w-8 h-8' />,
                   title: 'Seguridad Robusta',
                   description:
                     'Sistema de autenticación y autorización para proteger tu contenido.',
+                  screenshot: '/images/screenshots/devices.png',
                 },
               ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className='bg-white p-6 rounded-xl shadow-lg card-hover hover-lift'
+                <HoverTracker
+                  elementName={feature.title.toLowerCase().replace(/\s+/g, '_')}
                 >
-                  <div className='text-weplayer-blue mb-4'>{feature.icon}</div>
-                  <h3 className='text-xl font-semibold text-gray-900 mb-2'>
-                    {feature.title}
-                  </h3>
-                  <p className='text-gray-600'>{feature.description}</p>
-                  <div className='mt-4 w-8 h-0.5 bg-weplayer-red rounded-full'></div>
-                </motion.div>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className='group relative bg-white p-6 rounded-xl shadow-lg card-hover hover-lift overflow-hidden'
+                    onMouseEnter={() => {
+                      setHoveredCard(index);
+                      trackEvent({
+                        action: 'feature_hover',
+                        category: 'engagement',
+                        label: feature.title.toLowerCase().replace(/\s+/g, '_'),
+                      });
+                      trackFeatureUsage(
+                        feature.title.toLowerCase().replace(/\s+/g, '_')
+                      );
+                    }}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {/* Contenido de la card */}
+                    <div className='relative z-10'>
+                      <div className='text-weplayer-blue mb-4'>
+                        {feature.icon}
+                      </div>
+                      <h3 className='text-xl font-semibold text-gray-900 mb-2'>
+                        {feature.title}
+                      </h3>
+                      <p className='text-gray-600'>{feature.description}</p>
+                      <div className='mt-4 w-8 h-0.5 bg-weplayer-red rounded-full'></div>
+                    </div>
+
+                    {/* Indicador de hover */}
+                    <div className='absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20'>
+                      <div className='bg-weplayer-blue text-white text-xs px-2 py-1 rounded-full shadow-lg'>
+                        Vista previa
+                      </div>
+                    </div>
+                  </motion.div>
+                </HoverTracker>
               ))}
+
+              {/* Overlays globales posicionados absolutamente */}
+              {[
+                {
+                  icon: <Calendar className='w-8 h-8' />,
+                  title: 'Programación Avanzada',
+                  description:
+                    'Crea programaciones complejas con días específicos, horarios personalizados y eventos anuales.',
+                  screenshot: '/images/screenshots/schedule.png',
+                  position: 0,
+                },
+                {
+                  icon: <Smartphone className='w-8 h-8' />,
+                  title: 'Gestión de Dispositivos',
+                  description:
+                    'Monitorea y controla todos tus dispositivos desde una interfaz centralizada.',
+                  screenshot: '/images/screenshots/devices.png',
+                  position: 1,
+                },
+                {
+                  icon: <BarChart3 className='w-8 h-8' />,
+                  title: 'Análisis en Tiempo Real',
+                  description:
+                    'Obtén estadísticas detalladas de reproducción, estado de dispositivos y rendimiento.',
+                  screenshot: '/images/screenshots/devices.png',
+                  position: 2,
+                },
+                {
+                  icon: <Users className='w-8 h-8' />,
+                  title: 'Gestión de Grupos',
+                  description:
+                    'Organiza tus dispositivos en grupos para una gestión más eficiente.',
+                  screenshot: '/images/screenshots/groups.png',
+                  position: 3,
+                },
+                {
+                  icon: <Zap className='w-8 h-8' />,
+                  title: 'Sincronización Automática',
+                  description:
+                    'Los dispositivos se sincronizan automáticamente con el servidor central.',
+                  screenshot: '/images/screenshots/devices.png',
+                  position: 4,
+                },
+                {
+                  icon: <Shield className='w-8 h-8' />,
+                  title: 'Seguridad Robusta',
+                  description:
+                    'Sistema de autenticación y autorización para proteger tu contenido.',
+                  screenshot: '/images/screenshots/devices.png',
+                  position: 5,
+                },
+              ].map((feature, index) => {
+                const row = Math.floor(index / 3);
+                const col = index % 3;
+
+                // Calcular posicionamiento absoluto del overlay
+                let overlayStyle = {};
+                if (row === 0 && col === 0) {
+                  // Card 0: cubrir cards 1,2,4,5
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                } else if (row === 0 && col === 1) {
+                  // Card 1: cubrir cards 0,2,3,5
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                } else if (row === 0 && col === 2) {
+                  // Card 2: cubrir cards 0,1,3,4
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                } else if (row === 1 && col === 0) {
+                  // Card 3: cubrir cards 1,2,4,5
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                } else if (row === 1 && col === 1) {
+                  // Card 4: cubrir cards 0,2,3,5
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                } else if (row === 1 && col === 2) {
+                  // Card 5: cubrir cards 0,1,3,4
+                  overlayStyle = {
+                    gridColumn: '1 / 4',
+                    gridRow: '1 / 3',
+                    zIndex: 50,
+                    transform: 'scale(0.85)',
+                  };
+                }
+
+                return (
+                  <div
+                    key={`overlay-${index}`}
+                    className={`absolute transition-all duration-500 ease-in-out transform pointer-events-none ${
+                      hoveredCard === index
+                        ? 'opacity-100 scale-100'
+                        : 'opacity-0 scale-90'
+                    }`}
+                    style={overlayStyle}
+                  >
+                    <div className='relative w-full h-full bg-white rounded-xl shadow-2xl overflow-hidden border-2 border-weplayer-blue/30'>
+                      {/* Screenshot principal */}
+                      <img
+                        src={feature.screenshot}
+                        alt={`Screenshot de ${feature.title}`}
+                        className='w-full h-full object-cover'
+                        onLoad={() =>
+                          trackEvent({
+                            action: 'screenshot_load',
+                            category: 'engagement',
+                            label: feature.title
+                              .toLowerCase()
+                              .replace(/\s+/g, '_'),
+                          })
+                        }
+                        onError={() =>
+                          trackEvent({
+                            action: 'screenshot_error',
+                            category: 'engagement',
+                            label: feature.title
+                              .toLowerCase()
+                              .replace(/\s+/g, '_'),
+                          })
+                        }
+                      />
+
+                      {/* Información del screenshot */}
+                      <div className='absolute bottom-0 left-0 right-0 p-6'>
+                        <div className='bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl'>
+                          <div className='flex items-center gap-3 mb-3'>
+                            <div className='text-weplayer-blue'>
+                              {feature.icon}
+                            </div>
+                            <h3 className='text-xl font-bold text-gray-900'>
+                              {feature.title}
+                            </h3>
+                          </div>
+                          <p className='text-gray-700 text-sm leading-relaxed'>
+                            {feature.description}
+                          </p>
+                          <div className='mt-3 flex items-center gap-2'>
+                            <div className='w-2 h-2 bg-weplayer-blue rounded-full'></div>
+                            <span className='text-xs text-gray-600 font-medium'>
+                              Vista previa de la interfaz real
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Badge de característica */}
+                      <div className='absolute top-4 right-4'>
+                        <div className='bg-weplayer-blue text-white text-xs px-3 py-1 rounded-full shadow-lg font-medium'>
+                          Característica
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -343,12 +673,68 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <div className='bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4 shadow-2xl border border-gray-700'>
-                  <div className='aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg flex items-center justify-center border border-gray-600'>
-                    <div className='text-center text-white'>
-                      <Play className='w-16 h-16 mx-auto mb-4 text-weplayer-blue drop-shadow-lg' />
-                      <p className='text-lg font-semibold'>Demo Video</p>
-                      <p className='text-sm text-gray-400'>Próximamente</p>
+                  <VideoTracker videoName='demo_video'>
+                    <div className='aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg overflow-hidden border border-gray-600'>
+                      <video
+                        className='w-full h-full object-cover'
+                        controls
+                        poster='/videos/display/demo-thumbnail.jpg'
+                        preload='metadata'
+                        onPlay={() => {
+                          trackEvent({
+                            action: 'video_play',
+                            category: 'engagement',
+                            label: 'demo_video',
+                          });
+                          trackVercelEvent('video_play', {
+                            video_name: 'demo_video',
+                            video_type: 'demo',
+                          });
+                        }}
+                        onPause={() => {
+                          trackEvent({
+                            action: 'video_pause',
+                            category: 'engagement',
+                            label: 'demo_video',
+                          });
+                          trackVercelEvent('video_pause', {
+                            video_name: 'demo_video',
+                            video_type: 'demo',
+                          });
+                        }}
+                        onEnded={() => {
+                          trackEvent({
+                            action: 'video_complete',
+                            category: 'engagement',
+                            label: 'demo_video',
+                          });
+                          trackVercelEvent('video_complete', {
+                            video_name: 'demo_video',
+                            video_type: 'demo',
+                          });
+                          trackConversion('video_watch_complete', 1);
+                        }}
+                      >
+                        <source
+                          src='/videos/display/demo.mp4'
+                          type='video/mp4'
+                        />
+                        <source
+                          src='/videos/display/demo-web.mp4'
+                          type='video/mp4'
+                        />
+                        Tu navegador no soporta el elemento de video.
+                      </video>
                     </div>
+                  </VideoTracker>
+                  <div className='mt-4 text-center'>
+                    <p className='text-sm text-gray-400'>
+                      Demo de{' '}
+                      <span className='text-weplayer-red font-semibold'>
+                        We Player
+                      </span>{' '}
+                      en acción
+                    </p>
                   </div>
                 </div>
               </motion.div>

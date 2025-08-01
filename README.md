@@ -34,6 +34,51 @@ Landing page moderna y responsiva para We Player, la solución completa de carte
 - **Lucide React** - Iconos
 - **Google Analytics 4** - Analytics
 
+## 📚 Documentación
+
+### **📁 Estructura Organizada:**
+
+Toda la documentación técnica está organizada en la carpeta `docs/`:
+
+- **🎨 `/docs/overlay-effects/`** - Efectos de overlay y hover
+- **🎬 `/docs/video-optimization/`** - Optimización de videos
+- **🚀 `/docs/deployment/`** - Despliegue y GitHub
+- **📊 `/docs/analytics/`** - Google Analytics 4
+- **⚙️ `/docs/setup/`** - Configuración inicial
+
+### **📖 Guías Principales:**
+
+- [Configuración de Despliegue](./docs/deployment/DEPLOY_INSTRUCTIONS.md)
+- [Efectos de Overlay](./docs/overlay-effects/CORRECT_OVERLAY_AND_SECTION_CONFIGURATION.md)
+- [Optimización de Video](./docs/video-optimization/QUICK_START_VIDEO.md)
+- [Analytics Setup](./docs/analytics/ANALYTICS_SETUP.md)
+
+## 🎬 Scripts de Video
+
+### **📁 Scripts Organizados:**
+
+Todos los scripts de optimización de video están en la carpeta `scripts/`:
+
+- **📦 `optimize-video.js`** - Script principal de Node.js
+- **🪟 `setup-video-complete.bat`** - Setup completo de video
+- **🪟 `copy-to-display.bat`** - Copiar archivos optimizados
+- **🪟 `optimize-video-simple.bat`** - Optimización rápida
+- **💻 `optimize-video.ps1`** - Script PowerShell avanzado
+- **💻 `copy-to-display.ps1`** - Copiar con PowerShell
+
+### **🚀 Comandos NPM Disponibles:**
+
+```bash
+npm run video:optimize      # Optimización con Node.js
+npm run video:setup         # Setup completo
+npm run video:copy          # Copiar a display
+npm run video:optimize-simple # Optimización simple
+```
+
+### **📖 Documentación de Scripts:**
+
+- [Guía Completa de Scripts](./scripts/README.md)
+
 ## 🚀 Deploy en Vercel
 
 ### Opción 1: Deploy Automático (Recomendado)
