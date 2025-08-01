@@ -14,6 +14,7 @@ El formulario de contacto utiliza una **API route nativa de Next.js** que:
 ## 📁 Archivos del Sistema
 
 ### **1. API Route:**
+
 ```typescript
 // src/app/api/contact/route.ts
 export async function POST(request: NextRequest) {
@@ -23,12 +24,13 @@ export async function POST(request: NextRequest) {
 ```
 
 ### **2. Formulario Frontend:**
+
 ```typescript
 // src/app/page.tsx
 const handleSubmit = async (e: React.FormEvent) => {
   // Envía datos a /api/contact
   // Maneja respuestas de éxito/error
-}
+};
 ```
 
 ## 🔧 Cómo Funciona
@@ -47,7 +49,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ```typescript
 {
   nombre: "Nombre del usuario",
-  email: "usuario@email.com", 
+  email: "usuario@email.com",
   mensaje: "Mensaje del usuario",
   fecha: "2025-01-27T10:30:00.000Z",
   userAgent: "Mozilla/5.0...",
@@ -59,6 +61,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ## 📋 Ventajas del Sistema Actual
 
 ### **✅ Beneficios:**
+
 - **Sin dependencias externas** - No EmailJS
 - **Sin configuración adicional** - Funciona automáticamente
 - **Logs en Vercel** - Fácil monitoreo
@@ -66,6 +69,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 - **Tracking de analytics** - Eventos de formulario
 
 ### **✅ Seguridad:**
+
 - **Validación de email** - Regex robusto
 - **Sanitización de datos** - trim() en todos los campos
 - **Rate limiting** - Protección contra spam
@@ -102,11 +106,13 @@ const handleSubmit = async (e: React.FormEvent) => {
 Si quieres enviar emails reales, puedes:
 
 1. **Usar Resend** (recomendado):
+
    ```bash
    npm install resend
    ```
 
 2. **Usar SendGrid**:
+
    ```bash
    npm install @sendgrid/mail
    ```
@@ -126,7 +132,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   // ... validación ...
-  
+
   await resend.emails.send({
     from: 'contacto@tudominio.com',
     to: 'tu@email.com',
@@ -136,7 +142,7 @@ export async function POST(request: NextRequest) {
       <p><strong>Nombre:</strong> ${nombre}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Mensaje:</strong> ${mensaje}</p>
-    `
+    `,
   });
 }
 ```
@@ -144,6 +150,7 @@ export async function POST(request: NextRequest) {
 ## 🎯 Estado Actual
 
 ### **✅ Funcionando:**
+
 - ✅ Formulario de contacto
 - ✅ Validación de datos
 - ✅ API route nativa
@@ -152,6 +159,7 @@ export async function POST(request: NextRequest) {
 - ✅ Error handling
 
 ### **📊 Métricas Disponibles:**
+
 - ✅ Form submission rate
 - ✅ Error rate
 - ✅ Time to complete
@@ -159,4 +167,4 @@ export async function POST(request: NextRequest) {
 
 ---
 
-**¡El formulario está funcionando perfectamente sin EmailJS!** 📧✨ 
+**¡El formulario está funcionando perfectamente sin EmailJS!** 📧✨

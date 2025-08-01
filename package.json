@@ -19,6 +19,7 @@
     "verify:analytics": "node scripts/verify-analytics.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.5",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "framer-motion": "^11.0.0",

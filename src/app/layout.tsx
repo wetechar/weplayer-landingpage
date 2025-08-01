@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { StructuredData } from '../components/StructuredData';
 import './globals.css';
 
 const inter = Inter({
@@ -18,15 +19,76 @@ export const metadata: Metadata = {
   title: 'We Player - Solución Completa para Cartelería Digital',
   description:
     'Gestiona, programa y controla tu cartelería digital desde una plataforma centralizada. Monitoreo en tiempo real, programación avanzada y análisis detallado.',
-  keywords:
-    'cartelería digital, pantallas digitales, gestión de contenido, we player, digital signage',
-  authors: [{ name: 'We Tech' }],
+  keywords: [
+    'cartelería digital',
+    'pantallas digitales',
+    'gestión de contenido',
+    'we player',
+    'digital signage',
+    'cartelería interactiva',
+    'pantallas publicitarias',
+    'gestión de dispositivos',
+    'programación de contenido',
+    'monitoreo en tiempo real',
+    'análisis de rendimiento',
+    'sincronización automática',
+    'seguridad robusta',
+    'interfaz centralizada',
+    'Argentina',
+    'Buenos Aires',
+  ].join(', '),
+  authors: [{ name: 'We Tech', url: 'https://wetechar.com' }],
+  creator: 'We Tech',
+  publisher: 'We Tech',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://weplayer-landing.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'We Player - Solución Completa para Cartelería Digital',
     description:
-      'Gestiona, programa y controla tu cartelería digital desde una plataforma centralizada.',
+      'Gestiona, programa y controla tu cartelería digital desde una plataforma centralizada. Monitoreo en tiempo real, programación avanzada y análisis detallado.',
     type: 'website',
     locale: 'es_AR',
+    url: 'https://weplayer-landing.vercel.app',
+    siteName: 'We Player',
+    images: [
+      {
+        url: '/images/logos/We-player.png',
+        width: 1200,
+        height: 630,
+        alt: 'We Player - Cartelería Digital',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'We Player - Solución Completa para Cartelería Digital',
+    description:
+      'Gestiona, programa y controla tu cartelería digital desde una plataforma centralizada.',
+    images: ['/images/logos/We-player.png'],
+    creator: '@wetechar',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'tu-google-verification-code',
+    yandex: 'tu-yandex-verification-code',
+    yahoo: 'tu-yahoo-verification-code',
   },
 };
 
@@ -66,6 +128,7 @@ export default function RootLayout({
         )}
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+        <StructuredData />
         {children}
         <Analytics />
         <SpeedInsights />
