@@ -238,7 +238,7 @@ export default function Home() {
                 <h1 className='text-4xl md:text-6xl font-bold text-gray-900 mb-6'>
                   Solución Completa para
                   <span className='text-weplayer-blue block'>
-                    Cartelería Digital
+                    Cartelería Digital We Player
                   </span>
                   <span className='text-weplayer-red block text-3xl md:text-4xl font-medium mt-2'>
                     We Player
