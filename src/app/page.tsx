@@ -871,7 +871,7 @@ export default function Home() {
                     <Phone className='w-6 h-6 text-weplayer-blue' />
                     <div>
                       <p className='font-semibold text-gray-900'>Teléfono</p>
-                      <p className='text-gray-600'>+54 11 1234-5678</p>
+                      <p className='text-gray-600'>+54 11 58230996</p>
                     </div>
                   </div>
                   <div className='flex items-center gap-4'>

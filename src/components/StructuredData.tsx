@@ -17,7 +17,7 @@ export const StructuredData = () => {
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+54-11-1234-5678',
+      telephone: '+54-11-58230996',
       email: 'ingenieria@wetechar.com',
       contactType: 'customer service',
       availableLanguage: 'Spanish',
