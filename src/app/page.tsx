@@ -195,6 +195,12 @@ export default function Home() {
                   Demo
                 </a>
                 <a
+                  href='/wetech'
+                  className='text-gray-600 hover:text-weplayer-blue transition-colors'
+                >
+                  WeTech LatAm
+                </a>
+                <a
                   href='#contact'
                   className='text-gray-600 hover:text-weplayer-blue transition-colors'
                 >
@@ -1034,6 +1040,14 @@ export default function Home() {
                       className='hover:text-white transition-colors'
                     >
                       Demo
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href='/wetech'
+                      className='hover:text-white transition-colors'
+                    >
+                      WeTech LatAm
                     </a>
                   </li>
                   <li>
