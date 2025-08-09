@@ -876,7 +876,7 @@ export default function Home() {
                   <div className='flex items-center gap-4'>
                     <Phone className='w-6 h-6 text-weplayer-blue' />
                     <div>
-                      <p className='font-semibold text-gray-900'>Teléfono</p>
+                      <p className='font-semibold text-gray-900'>Movil</p>
                       <p className='text-gray-600'>+54 11 58230996</p>
                     </div>
                   </div>
