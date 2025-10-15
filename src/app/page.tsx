@@ -256,9 +256,10 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 className='text-center lg:text-left'
+              >
                 {/* Mensaje y contador de visitas */}
-                <div className="mb-4">
-                  <span className="inline-block bg-weplayer-blue text-white rounded-full px-4 py-1 text-sm font-semibold shadow">
+                <div className='mb-4'>
+                  <span className='inline-block bg-weplayer-blue text-white rounded-full px-4 py-1 text-sm font-semibold shadow'>
                     {visitLoading
                       ? 'Cargando visitas...'
                       : visitCount !== null
@@ -266,7 +267,6 @@ export default function Home() {
                         : 'No se pudo obtener el contador de visitas'}
                   </span>
                 </div>
-              >
                 <h1 className='text-4xl md:text-6xl font-bold text-gray-900 mb-6'>
                   Solución Completa para
                   <span className='text-weplayer-blue block'>
