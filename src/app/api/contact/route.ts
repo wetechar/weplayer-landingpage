@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend('re_S7xCwayp_8R6a98tmUSbBPN3XWS8UFKH2');
+const resend = new Resend(
+  process.env.RESEND_API_KEY || 're_S7xCwayp_8R6a98tmUSbBPN3XWS8UFKH2'
+);
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,7 +31,9 @@ export async function POST(request: NextRequest) {
       mensaje: mensaje.trim(),
       fecha: new Date().toISOString(),
       userAgent: request.headers.get('user-agent'),
-      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+      ip:
+        request.headers.get('x-forwarded-for') ||
+        request.headers.get('x-real-ip'),
       timestamp: Date.now(),
     };
 
@@ -40,7 +44,7 @@ export async function POST(request: NextRequest) {
     try {
       await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: 'tecnopulsar@gmail.com',
+        to: process.env.EMAIL_DESTINATARIO || 'tecnopulsar@gmail.com',
         subject: `Nuevo contacto desde We Player - ${messageData.nombre}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -70,7 +74,7 @@ export async function POST(request: NextRequest) {
               <p style="font-size: 12px;">© 2025 We Tech. Todos los derechos reservados.</p>
             </div>
           </div>
-        `
+        `,
       });
 
       console.log('✅ Email enviado exitosamente con Resend');

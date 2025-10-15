@@ -53,6 +53,25 @@ function ClientOnly({ children }: { children: React.ReactNode }) {
 }
 
 export default function Home() {
+  // Estado para el contador de visitas
+  const [visitCount, setVisitCount] = useState<number | null>(null);
+  const [visitLoading, setVisitLoading] = useState(true);
+
+  useEffect(() => {
+    // Llama al endpoint de visitas al cargar la página
+    const fetchVisits = async () => {
+      try {
+        const res = await fetch('/api/visit');
+        const data = await res.json();
+        setVisitCount(data.count);
+      } catch (e) {
+        setVisitCount(null);
+      } finally {
+        setVisitLoading(false);
+      }
+    };
+    fetchVisits();
+  }, []);
   const { trackEvent } = useAnalytics();
   const {
     trackEvent: trackVercelEvent,
@@ -237,6 +256,16 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 className='text-center lg:text-left'
+                {/* Mensaje y contador de visitas */}
+                <div className="mb-4">
+                  <span className="inline-block bg-weplayer-blue text-white rounded-full px-4 py-1 text-sm font-semibold shadow">
+                    {visitLoading
+                      ? 'Cargando visitas...'
+                      : visitCount !== null
+                        ? `¡Bienvenido! Visitas totales: ${visitCount}`
+                        : 'No se pudo obtener el contador de visitas'}
+                  </span>
+                </div>
               >
                 <h1 className='text-4xl md:text-6xl font-bold text-gray-900 mb-6'>
                   Solución Completa para
@@ -416,10 +445,10 @@ export default function Home() {
                 },
               ].map((feature, index) => (
                 <HoverTracker
+                  key={index}
                   elementName={feature.title.toLowerCase().replace(/\s+/g, '_')}
                 >
                   <motion.div
-                    key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
