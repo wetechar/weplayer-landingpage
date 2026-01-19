@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 
@@ -28,21 +27,12 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            {/* 
-              Using Next.js Image component for optimization.
-              Source is '/images/...' because the 'public' folder is the root for static assets.
-              The logo is 199x577 (vertical). We provide intrinsic width/height 
-              but control display size via CSS (h-16/h-20 and w-auto) to maintain aspect ratio 
-              and fit the navbar visually.
-            */}
             <div className={`relative transition-all duration-300 ${isScrolled ? 'h-14' : 'h-20'} w-auto`}>
-              <Image 
+              <img 
                 src="/images/Vector-Wetechar.svg" 
-                alt="We Tech" 
-                width={199}
-                height={577}
+                alt="We Tech - Integración Audiovisual" 
                 className="h-full w-auto object-contain"
-                priority
+                loading="eager"
               />
             </div>
           </div>

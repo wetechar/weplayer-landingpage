@@ -8,12 +8,8 @@ const Hero: React.FC = () => {
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-brand-dark">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop"
-          alt="Modern Corporate Office"
-          className="w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/70 to-transparent" />
+        <div className="w-full h-full bg-gradient-to-br from-brand-dark via-slate-800 to-brand-dark" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/85 to-transparent" />
       </div>
 
       {/* Content */}
@@ -32,14 +28,14 @@ const Hero: React.FC = () => {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              Creemos en el <br/>
-              Poder de <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
-                Conectar Personas
+              Soluciones tecnológicas <br/>
+              para experiencias <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
+                excepcionales
               </span>
             </h1>
             
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl font-light leading-relaxed">
-              Transformamos espacios con tecnología audiovisual. Simplificamos la complejidad tecnológica para crear entornos colaborativos, eficientes y de alto impacto.
+              Servicios audiovisuales y de comunicaciones unificadas para TI. Transformamos espacios con tecnología de vanguardia que simplifica la complejidad y potencia la colaboración.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">

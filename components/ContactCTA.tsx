@@ -1,5 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Download } from 'lucide-react';
 
 const ContactCTA: React.FC = () => {
   return (
@@ -15,17 +17,28 @@ const ContactCTA: React.FC = () => {
         <p className="text-xl text-white/90 mb-10 leading-relaxed">
           Agenda una demostración técnica o solicita una auditoría gratuita de tus instalaciones actuales. Nuestro equipo de ingenieros está listo para ayudarte.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-col sm:flex-row justify-center gap-4"
+        >
           <a
-             href="mailto:ventasse@wetechar.com"
-             className="px-8 py-4 bg-white text-brand-primary font-bold rounded-lg shadow-xl hover:bg-gray-50 transition-colors transform hover:-translate-y-1"
+            href="mailto:ventasse@wetechar.com"
+            className="group flex items-center justify-center px-8 py-4 bg-white text-brand-primary font-bold rounded-lg shadow-xl hover:bg-gray-50 transition-all transform hover:-translate-y-1"
           >
+            <Mail className="mr-2" size={20} />
             Contactar Especialista
           </a>
-          <button className="px-8 py-4 bg-brand-dark/20 text-white border border-white/30 font-semibold rounded-lg hover:bg-brand-dark/30 transition-colors">
+          <a
+            href="#contact"
+            className="group flex items-center justify-center px-8 py-4 bg-brand-dark/20 text-white border border-white/30 font-semibold rounded-lg hover:bg-brand-dark/30 transition-all"
+          >
+            <Download className="mr-2" size={20} />
             Descargar Brochure
-          </button>
-        </div>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

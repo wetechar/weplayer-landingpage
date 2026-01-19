@@ -38,10 +38,13 @@ const Services: React.FC = () => {
               <p className="text-slate-600 leading-relaxed">
                 {service.description}
               </p>
-              <div className="mt-6 pt-6 border-t border-gray-50 flex items-center text-sm font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity">
+              <a 
+                href="#contact" 
+                className="mt-6 pt-6 border-t border-gray-50 flex items-center text-sm font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"
+              >
                 <span>Conocer más</span>
                 <span className="ml-2">→</span>
-              </div>
+              </a>
             </motion.div>
           ))}
         </div>

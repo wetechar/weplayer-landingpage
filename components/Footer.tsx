@@ -16,13 +16,13 @@ const Footer: React.FC = () => {
               Somos una empresa integradora de tecnología audiovisual enfocada en crear experiencias conectadas para entornos corporativos, comerciales y residenciales.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/company/wetech" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de We Tech" className="text-slate-400 hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/wetech" target="_blank" rel="noopener noreferrer" aria-label="Instagram de We Tech" className="text-slate-400 hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://www.facebook.com/wetech" target="_blank" rel="noopener noreferrer" aria-label="Facebook de We Tech" className="text-slate-400 hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
             </div>
@@ -46,9 +46,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm">
               <li><a href="#about" className="hover:text-brand-primary transition-colors">Sobre Nosotros</a></li>
               <li><a href="#verticals" className="hover:text-brand-primary transition-colors">Casos de Éxito</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Partners</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Carreras</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Blog</a></li>
+              <li><a href="#partners" className="hover:text-brand-primary transition-colors">Partners</a></li>
+              <li><a href="#contact" className="hover:text-brand-primary transition-colors">Carreras</a></li>
+              <li><a href="#contact" className="hover:text-brand-primary transition-colors">Blog</a></li>
             </ul>
           </div>
 
@@ -75,8 +75,8 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
           <p>&copy; {new Date().getFullYear()} We Tech Integration. Todos los derechos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-slate-300">Política de Privacidad</a>
-            <a href="#" className="hover:text-slate-300">Términos de Uso</a>
+            <a href="#privacy" className="hover:text-slate-300">Política de Privacidad</a>
+            <a href="#terms" className="hover:text-slate-300">Términos de Uso</a>
           </div>
         </div>
       </div>

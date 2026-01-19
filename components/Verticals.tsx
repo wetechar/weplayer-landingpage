@@ -71,9 +71,12 @@ const Verticals: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                  <button className="mt-8 px-6 py-3 bg-brand-primary hover:bg-brand-accent rounded-lg text-white font-semibold transition-colors">
+                  <a 
+                    href="#contact" 
+                    className="inline-block mt-8 px-6 py-3 bg-brand-primary hover:bg-brand-accent rounded-lg text-white font-semibold transition-colors"
+                  >
                     Ver casos de éxito
-                  </button>
+                  </a>
                 </div>
               </motion.div>
             </AnimatePresence>
