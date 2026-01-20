@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(
-  process.env.RESEND_API_KEY || 're_S7xCwayp_8R6a98tmUSbBPN3XWS8UFKH2'
-);
+// Inicializar Resend solo si la API key está configurada
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,11 +41,29 @@ export async function POST(request: NextRequest) {
     // Log del mensaje
     console.log('📧 NUEVO MENSAJE DE CONTACTO:', messageData);
 
+    // Validar que Resend esté configurado
+    if (!resend || !process.env.RESEND_API_KEY) {
+      console.error('❌ RESEND_API_KEY no configurada en las variables de entorno');
+      return NextResponse.json(
+        { error: 'Servicio de email no configurado' },
+        { status: 500 }
+      );
+    }
+
+    // Validar email destinatario
+    if (!process.env.EMAIL_DESTINATARIO) {
+      console.error('❌ EMAIL_DESTINATARIO no configurado en las variables de entorno');
+      return NextResponse.json(
+        { error: 'Email destinatario no configurado' },
+        { status: 500 }
+      );
+    }
+
     // Enviar email con Resend
     try {
       await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: process.env.EMAIL_DESTINATARIO || 'tecnopulsar@gmail.com',
+        to: process.env.EMAIL_DESTINATARIO,
         subject: `Nuevo contacto desde We Player - ${messageData.nombre}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
