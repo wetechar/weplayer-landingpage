@@ -1,46 +1,31 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
-    swcMinify: true,
-    experimental: {
-        // Configuraciones experimentales de Next.js
-    },
-    // Suprimir warnings de hidratación en desarrollo
-    onDemandEntries: {
-        maxInactiveAge: 25 * 1000,
-        pagesBufferLength: 2,
-    },
-    // Configuración para mejorar la estabilidad
-    compiler: {
-        removeConsole: process.env.NODE_ENV === "production",
-    },
-    // Configuración de imágenes
-    images: {
-        domains: [],
-        unoptimized: false,
-    },
-    // Configuración de headers
-    async headers() {
-        return [
-            {
-                source: "/(.*)",
-                headers: [
-                    {
-                        key: "X-Frame-Options",
-                        value: "DENY",
-                    },
-                    {
-                        key: "X-Content-Type-Options",
-                        value: "nosniff",
-                    },
-                    {
-                        key: "Referrer-Policy",
-                        value: "origin-when-cross-origin",
-                    },
-                ],
-            },
-        ];
-    },
+  reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'instagram.faep14-3.fna.fbcdn.net',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.fbcdn.net',
+      },
+    ],
+  },
+  // Optimizaciones para producción
+  compress: true,
+  poweredByHeader: false,
 };
 
-module.exports = nextConfig; 
+module.exports = nextConfig;

@@ -1,51 +1,45 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
+import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Cargar variables de entorno
-// Cargar primero .env, luego .env.local (tiene mayor prioridad y sobrescribe .env)
-dotenv.config(); // Carga .env por defecto
-dotenv.config({ path: '.env.local', override: true }); // .env.local sobrescribe .env si existe
-
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Inicializar Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Ruta para enviar emails
-app.post('/api/contact', async (req, res) => {
+export async function POST(request: NextRequest) {
   try {
-    const { name, email, phone, company, message } = req.body;
+    const body = await request.json();
+    const { name, email, phone, company, message } = body;
 
     // Validación básica
     if (!name || !email || !message) {
-      return res.status(400).json({
-        success: false,
-        error: 'Los campos nombre, email y mensaje son requeridos',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Los campos nombre, email y mensaje son requeridos',
+        },
+        { status: 400 }
+      );
     }
 
     // Validación de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        error: 'Email inválido',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Email inválido',
+        },
+        { status: 400 }
+      );
     }
 
     // Si Resend no está configurado, retornar error
     if (!process.env.RESEND_API_KEY) {
-      return res.status(500).json({
-        success: false,
-        error: 'Servicio de email no configurado. Por favor configure RESEND_API_KEY en las variables de entorno.',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Servicio de email no configurado. Por favor configure RESEND_API_KEY en las variables de entorno.',
+        },
+        { status: 500 }
+      );
     }
 
     // Email de destino (puede ser configurado en .env o usar el por defecto)
@@ -104,41 +98,30 @@ ${message}
 
     if (error) {
       console.error('❌ Error al enviar email con Resend:', error);
-      return res.status(500).json({
-        success: false,
-        error: 'Error al enviar el email. Por favor intenta nuevamente.',
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Error al enviar el email. Por favor intenta nuevamente.',
+        },
+        { status: 500 }
+      );
     }
 
     console.log('✅ Email enviado exitosamente:', data);
 
-    return res.status(200).json({
+    return NextResponse.json({
       success: true,
       message: 'Mensaje enviado exitosamente. Te contactaremos pronto.',
       data,
     });
   } catch (error) {
     console.error('❌ Error en API de contacto:', error);
-    return res.status(500).json({
-      success: false,
-      error: 'Error interno del servidor',
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        error: 'Error interno del servidor',
+      },
+      { status: 500 }
+    );
   }
-});
-
-// Ruta de salud para verificar que el servidor está funcionando
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'API de contacto funcionando correctamente' });
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor Express corriendo en http://localhost:${PORT}`);
-  console.log(`📧 API de contacto disponible en http://localhost:${PORT}/api/contact`);
-  if (process.env.RESEND_API_KEY) {
-    const apiKeyPreview = process.env.RESEND_API_KEY.substring(0, 10) + '...';
-    console.log(`✅ RESEND_API_KEY cargada correctamente: ${apiKeyPreview}`);
-  } else {
-    console.warn('⚠️  ADVERTENCIA: RESEND_API_KEY no está configurada. El servicio de email no funcionará.');
-    console.warn('   Verifica que el archivo .env.local contenga RESEND_API_KEY=tu_api_key');
-  }
-});
+}

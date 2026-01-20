@@ -1,7 +1,8 @@
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { NAV_ITEMS } from '../constants';
+import { NAV_ITEMS } from '@/constants';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);

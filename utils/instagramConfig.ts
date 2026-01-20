@@ -14,11 +14,11 @@
 export const INSTAGRAM_CONFIG = {
   // Token de acceso de Instagram Graph API (opcional)
   // Obténlo desde: https://developers.facebook.com/tools/explorer/
-  accessToken: import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN || '',
+  accessToken: process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN || '',
   
   // Instagram User ID (opcional)
   // Encuéntralo en: https://www.instagram.com/{username}/?__a=1&__d=dis
-  userId: import.meta.env.VITE_INSTAGRAM_USER_ID || '',
+  userId: process.env.NEXT_PUBLIC_INSTAGRAM_USER_ID || '',
   
   // Posts de fallback (se usan si no hay token o si falla la API)
   fallbackPosts: [

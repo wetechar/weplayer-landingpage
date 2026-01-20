@@ -1,7 +1,8 @@
+'use client';
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { VERTICALS } from '../constants';
+import { VERTICALS } from '@/constants';
 import { CheckCircle2 } from 'lucide-react';
 
 const Verticals: React.FC = () => {

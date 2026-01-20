@@ -1,9 +1,10 @@
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, PlayCircle, Instagram } from 'lucide-react';
-import { useInstagramPosts } from '../hooks/useInstagramPosts';
-import { INSTAGRAM_CONFIG } from '../utils/instagramConfig';
+import { useInstagramPosts } from '@/hooks/useInstagramPosts';
+import { INSTAGRAM_CONFIG } from '@/utils/instagramConfig';
 
 const Hero: React.FC = () => {
   // Obtener posts de Instagram automáticamente

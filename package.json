@@ -1,38 +1,30 @@
 {
   "name": "we-tech-landing-2026",
-  "private": true,
   "version": "0.1.0",
-  "type": "module",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/node": "^5.5.24",
     "framer-motion": "^12.27.1",
     "lucide-react": "^0.562.0",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "resend": "^6.8.0"
-  },
-  "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "^1.30.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
     "@types/node": "^22.19.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "concurrently": "^9.2.1",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.1.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "tsx": "^4.21.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "typescript": "^5.8.2"
   }
 }

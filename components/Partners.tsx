@@ -1,7 +1,8 @@
+'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PARTNERS } from '../constants';
+import { PARTNERS } from '@/constants';
 
 const Partners: React.FC = () => {
   return (
