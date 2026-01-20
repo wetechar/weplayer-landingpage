@@ -26,6 +26,19 @@ Thumbs.db
 .next/
 out/
 build/
+dist/
+
+# Next.js files (this is a Vite project)
+next.config.js
+postcss.config.mjs
+src/app/
+src/components/Analytics.tsx
+src/components/StructuredData.tsx
+src/components/VercelAnalytics.tsx
+src/components/WeplayerLogo.tsx
+
+# Express server (using Vercel serverless functions instead)
+api/server.ts
 
 # Logs
 *.log

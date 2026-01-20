@@ -29,6 +29,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^22.19.7",
+    "@vercel/node": "^5.5.24",
     "@vitejs/plugin-react": "^5.0.0",
     "concurrently": "^9.2.1",
     "postcss": "^8.5.6",

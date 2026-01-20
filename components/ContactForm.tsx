@@ -68,8 +68,13 @@ const ContactForm: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      // URL de la API (por defecto localhost:3001, configurable con VITE_API_URL)
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      // URL de la API
+      // En producción (Vercel), usar ruta relativa /api/contact
+      // En desarrollo, usar VITE_API_URL o localhost:3001
+      const isProduction = import.meta.env.PROD;
+      const apiUrl = isProduction 
+        ? '' // En producción, usar ruta relativa
+        : (import.meta.env.VITE_API_URL || 'http://localhost:3001');
       
       // Enviar con Resend a través de la API
       const response = await fetch(`${apiUrl}/api/contact`, {
