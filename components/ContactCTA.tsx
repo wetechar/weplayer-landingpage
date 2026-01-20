@@ -34,6 +34,10 @@ const ContactCTA: React.FC = () => {
           <a
             href="#contact"
             className="group flex items-center justify-center px-8 py-4 bg-brand-dark/20 text-white border border-white/30 font-semibold rounded-lg hover:bg-brand-dark/30 transition-all"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             <Download className="mr-2" size={20} />
             Descargar Brochure

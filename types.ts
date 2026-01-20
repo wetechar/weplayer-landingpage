@@ -5,6 +5,7 @@ export interface ServiceItem {
   title: string;
   description: string;
   icon: LucideIcon;
+  imageUrl?: string;
 }
 
 export interface VerticalItem {
@@ -23,4 +24,7 @@ export interface NavItem {
 export interface PartnerLogo {
   name: string;
   url: string; // Placeholder URL
+  imageUrl?: string;
+  subtitle?: string;
+  description?: string;
 }

@@ -27,24 +27,40 @@ const Services: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="group rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-xl bg-brand-light text-brand-primary flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
-                <service.icon size={28} />
+              {/* Imagen del servicio */}
+              {service.imageUrl && (
+                <div className="relative h-48 overflow-hidden bg-slate-200">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              )}
+              
+              {/* Contenido */}
+              <div className="p-8">
+                <div className="w-14 h-14 rounded-xl bg-brand-light text-brand-primary flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
+                  <service.icon size={28} />
+                </div>
+                <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-primary transition-colors">
+                  {service.title}
+                </h4>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  {service.description}
+                </p>
+                <a 
+                  href="#contact" 
+                  className="flex items-center text-sm font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <span>Conocer más</span>
+                  <span className="ml-2">→</span>
+                </a>
               </div>
-              <h4 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-brand-primary transition-colors">
-                {service.title}
-              </h4>
-              <p className="text-slate-600 leading-relaxed">
-                {service.description}
-              </p>
-              <a 
-                href="#contact" 
-                className="mt-6 pt-6 border-t border-gray-50 flex items-center text-sm font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <span>Conocer más</span>
-                <span className="ml-2">→</span>
-              </a>
             </motion.div>
           ))}
         </div>

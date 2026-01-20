@@ -5,6 +5,7 @@ import Partners from './components/Partners';
 import About from './components/About';
 import Services from './components/Services';
 import Verticals from './components/Verticals';
+import ContactForm from './components/ContactForm';
 import ContactCTA from './components/ContactCTA';
 import Footer from './components/Footer';
 
@@ -18,6 +19,7 @@ function App() {
         <About />
         <Services />
         <Verticals />
+        <ContactForm />
         <ContactCTA />
       </main>
       <Footer />
