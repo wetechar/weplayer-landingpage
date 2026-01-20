@@ -1,7 +1,3 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
 # 🚀 We Tech - Landing Page 2026
 
 Landing page moderna para We Tech, empresa de integración audiovisual.
@@ -143,6 +139,7 @@ Los archivos se generarán en la carpeta `dist/`.
 
 - [`docs/RESEND_SETUP.md`](docs/RESEND_SETUP.md) - Configuración detallada de Resend
 - [`docs/EMAIL_INTEGRATION_OPTIONS.md`](docs/EMAIL_INTEGRATION_OPTIONS.md) - Opciones de integración de email
+- [`docs/GITHUB_CONFIGURATION.md`](docs/GITHUB_CONFIGURATION.md) - Configuración de GitHub
 
 ## 🔒 Seguridad
 
@@ -150,3 +147,7 @@ Los archivos se generarán en la carpeta `dist/`.
 - ✅ Validación en servidor
 - ✅ CORS configurado
 - ✅ Variables de entorno para configuración sensible
+
+---
+
+**Desarrollado por We Tech** 🚀

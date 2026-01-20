@@ -1,7 +1,7 @@
 {
-  "name": "copy-of-we-tech---modern-av-integration",
+  "name": "we-tech-landing-2026",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "check-ports": "node scripts/check-ports.js",
@@ -20,7 +20,6 @@
     "express": "^5.2.1",
     "framer-motion": "^12.27.1",
     "lucide-react": "^0.562.0",
-    "next": "^16.1.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "resend": "^6.8.0"
