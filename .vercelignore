@@ -26,7 +26,6 @@ Thumbs.db
 .next/
 out/
 build/
-dist/
 
 # Next.js files (this is a Vite project)
 next.config.js
@@ -47,4 +46,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Dependencies
-node_modules/ 
+node_modules/

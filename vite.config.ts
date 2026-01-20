@@ -11,8 +11,8 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [react()],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
         'import.meta.env.PROD': JSON.stringify(mode === 'production'),
       },
       resolve: {
@@ -23,6 +23,14 @@ export default defineConfig(({ mode }) => {
       build: {
         outDir: 'dist',
         assetsDir: 'assets',
+        // Asegurar que el build no falle por warnings
+        rollupOptions: {
+          onwarn(warning, warn) {
+            // Ignorar warnings específicos que no afectan el build
+            if (warning.code === 'UNUSED_EXTERNAL_IMPORT') return;
+            warn(warning);
+          },
+        },
       }
     };
 });
