@@ -16,6 +16,9 @@
     "react-dom": "^19.0.0",
     "resend": "^6.8.0"
   },
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.1.18"
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^22.19.7",
