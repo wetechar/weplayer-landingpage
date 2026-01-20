@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@vercel/node": "^5.5.24",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
@@ -29,7 +30,6 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^22.19.7",
-    "@vercel/node": "^5.5.24",
     "@vitejs/plugin-react": "^5.0.0",
     "concurrently": "^9.2.1",
     "postcss": "^8.5.6",
