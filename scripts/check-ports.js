@@ -5,6 +5,23 @@ import { platform } from 'os';
 const execAsync = promisify(exec);
 const isWindows = platform() === 'win32';
 
+// Detectar si estamos en producción (Vercel, CI/CD, etc.)
+// Solo ejecutar en desarrollo local, NO en producción
+const isProduction = 
+  process.env.NODE_ENV === 'production' || 
+  process.env.VERCEL === '1' || 
+  process.env.VERCEL_ENV === 'production' ||
+  process.env.VERCEL_ENV === 'preview' ||
+  process.env.CI === 'true' ||
+  process.env.CONTINUOUS_INTEGRATION === 'true' ||
+  process.env.GITHUB_ACTIONS === 'true';
+
+// Si estamos en producción, salir inmediatamente sin hacer nada
+if (isProduction) {
+  console.log('ℹ️  Entorno de producción detectado. Saltando verificación de puertos.');
+  process.exit(0);
+}
+
 /**
  * Verifica si un puerto está en uso (solo LISTENING, no TIME_WAIT u otros estados)
  */

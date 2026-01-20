@@ -48,6 +48,8 @@ Los scripts están integrados automáticamente en los comandos de desarrollo:
 - `npm run dev:all` - Verifica puertos antes de iniciar ambos servicios
 - `npm run server` - Verifica puertos antes de iniciar el servidor en producción
 
+**⚠️ Importante**: Los scripts **NO se ejecutan** en entornos de producción como Vercel, CI/CD, GitHub Actions, etc. Se detectan automáticamente y se saltan.
+
 ## ⚙️ Funcionamiento
 
 1. **Verificación**: El script verifica si los puertos 3000 y 3001 están en uso
@@ -77,4 +79,5 @@ Esto puede ocurrir si:
 
 - El script solo verifica conexiones **LISTENING**, ignorando estados como TIME_WAIT o FIN_WAIT_2
 - Los puertos en estado TIME_WAIT se liberan automáticamente después de unos minutos
-- En producción, asegúrate de que los puertos estén disponibles antes de desplegar
+- **Solo para desarrollo**: Los scripts se saltan automáticamente en producción (Vercel, CI/CD)
+- El script detecta producción mediante variables de entorno: `VERCEL`, `NODE_ENV=production`, `CI`, etc.

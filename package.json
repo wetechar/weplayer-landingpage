@@ -10,10 +10,8 @@
     "dev:server": "npm run check-ports && tsx watch api/server.ts",
     "dev:all": "npm run check-ports && concurrently \"npm run dev\" \"npm run dev:server\"",
     "build": "vite build",
-    "build:vercel": "vite build",
     "preview": "vite preview",
-    "server": "npm run check-ports && tsx api/server.ts",
-    "postinstall": "echo 'Build dependencies installed'"
+    "server": "npm run check-ports && tsx api/server.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
