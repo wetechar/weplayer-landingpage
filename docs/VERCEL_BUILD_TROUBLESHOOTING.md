@@ -46,11 +46,20 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 }
 ```
 
-#### 4. **Scripts de Build**
+#### 4. **Error: Cannot find module @rollup/rollup-linux-x64-gnu**
+
+**Problema**: Rollup tiene dependencias opcionales específicas de plataforma que npm a veces no instala correctamente.
+
+**Solución**: 
+- El archivo `.npmrc` está configurado con `optional=true` para instalar dependencias opcionales
+- El `vercel.json` usa `npm install --include=optional` para asegurar la instalación
+- Asegúrate de que `package-lock.json` esté commitado en el repositorio
+
+#### 5. **Scripts de Build**
 
 **Problema**: El script `check-ports` podría estar ejecutándose durante el build.
 
-**Solución**: El script `build` solo ejecuta `vite build`, no `check-ports`. Si hay problemas, verifica que no haya hooks de npm ejecutándose.
+**Solución**: El script `build` solo ejecuta `vite build`, no `check-ports`. Los scripts de verificación de puertos se saltan automáticamente en producción (Vercel detecta `VERCEL=1`).
 
 #### 5. **Archivos de Next.js Confundiendo a Vercel**
 
