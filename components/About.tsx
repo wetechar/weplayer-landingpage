@@ -63,7 +63,7 @@ const About: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-gradient-to-br from-brand-light to-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
+                className="p-6 rounded-2xl bg-linear-to-br from-brand-light to-white border border-gray-100 shadow-sm hover:shadow-lg transition-shadow"
               >
                 <stat.icon className="text-brand-primary mb-4" size={32} />
                 <div className="text-3xl font-bold text-slate-900 mb-1">{stat.value}</div>

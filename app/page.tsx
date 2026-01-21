@@ -1,3 +1,6 @@
+import HeroMobile from '@/components/HeroMobile';
+import HeroBento from '@/components/HeroBento';
+import HeroTriptico from '@/components/HeroTriptico';
 import Hero from '@/components/Hero';
 import Partners from '@/components/Partners';
 import About from '@/components/About';
@@ -9,6 +12,9 @@ import ContactCTA from '@/components/ContactCTA';
 export default function Home() {
   return (
     <>
+      {/* <HeroMobile /> */}
+      <HeroBento />
+      <HeroTriptico />
       <Hero />
       <Partners />
       <About />

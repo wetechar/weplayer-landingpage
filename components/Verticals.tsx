@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VERTICALS } from '@/constants';
 import { CheckCircle2 } from 'lucide-react';
@@ -55,12 +56,14 @@ const Verticals: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <img
+                <Image
                   src={activeVertical.imageUrl}
                   alt={activeVertical.title}
-                  className="w-full h-full object-cover opacity-60"
+                  fill
+                  className="object-cover opacity-60"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent" />
                 
                 <div className="absolute bottom-0 left-0 p-8 sm:p-12">
                   <h4 className="text-2xl font-bold mb-4">{activeVertical.title}</h4>

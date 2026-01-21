@@ -4,6 +4,9 @@
 
 Este proyecto utiliza **Resend** como servicio de envío de emails para el formulario de contacto, siguiendo las mejores prácticas de seguridad al mantener la API key en el servidor.
 
+> 📖 **¿Quieres usar este componente en otros proyectos?**  
+> Consulta la **[Guía Completa de Reutilización del Componente](./RESEND_COMPONENT_GUIDE.md)** para instrucciones detalladas sobre cómo implementar este formulario en otras páginas web o proyectos Next.js.
+
 ## 📋 Requisitos Previos
 
 1. **Cuenta en Resend**: Crea una cuenta gratuita en [resend.com](https://resend.com/)

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '@/constants';
 
@@ -28,12 +29,14 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <div className={`relative transition-all duration-300 ${isScrolled ? 'h-14' : 'h-20'} w-auto`}>
-              <img 
-                src="/images/Vector-Wetechar.svg" 
+            <div className={`relative transition-all duration-300 ${isScrolled ? 'h-14 brightness-0' : 'h-20 brightness-0 invert drop-shadow-lg'} w-auto`}>
+              <Image 
+                src="/images/logos/logo.png"
                 alt="We Tech - Integración Audiovisual" 
+                width={isScrolled ? 56 : 80}
+                height={isScrolled ? 56 : 80}
                 className="h-full w-auto object-contain"
-                loading="eager"
+                priority
               />
             </div>
           </div>

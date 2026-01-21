@@ -4,12 +4,11 @@ Landing page moderna para We Tech, empresa de integración audiovisual.
 
 ## 🛠️ Tecnologías
 
+- **Next.js 15** - Framework React con App Router
 - **React 19** + **TypeScript**
-- **Vite** - Build tool
 - **Tailwind CSS v4** - Estilos
 - **Framer Motion** - Animaciones
 - **Resend** - Servicio de envío de emails
-- **Express** - Servidor API
 
 ## 📋 Requisitos Previos
 
@@ -33,12 +32,6 @@ Crea un archivo `.env` en la raíz del proyecto (basado en `.env.example`):
 RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EMAIL_DESTINATARIO=ingenieria@wetechar.com
 RESEND_FROM_EMAIL=onboarding@resend.dev
-
-# Puerto del servidor API (opcional, por defecto 3001)
-PORT=3001
-
-# URL de la API para el frontend (opcional, por defecto http://localhost:3001)
-VITE_API_URL=http://localhost:3001
 ```
 
 **Obtén tu API key de Resend:**
@@ -48,36 +41,11 @@ VITE_API_URL=http://localhost:3001
 
 ### 3. Ejecutar el Proyecto
 
-**⚠️ Nota**: Los scripts de desarrollo verifican automáticamente que los puertos 3000 y 3001 estén libres antes de iniciar. Si están en uso, intentarán liberarlos automáticamente.
-
-**Opción 1: Ejecutar todo junto (Recomendado para desarrollo)**
 ```bash
-npm run dev:all
+npm run dev
 ```
 
-Esto iniciará:
-- **Frontend**: `http://localhost:3000` (Vite)
-- **API Server**: `http://localhost:3001` (Express)
-
-**Opción 2: Ejecutar por separado**
-
-En una terminal:
-```bash
-npm run dev        # Frontend solamente
-```
-
-En otra terminal:
-```bash
-npm run dev:server # Servidor API solamente
-```
-
-**Verificar/Liberar puertos manualmente:**
-```bash
-npm run check-ports    # Solo verificar
-npm run kill-ports     # Verificar y liberar automáticamente
-```
-
-📖 **Más información**: Ver [`scripts/README.md`](scripts/README.md) para detalles sobre los scripts de verificación de puertos.
+Esto iniciará el servidor de desarrollo de Next.js en `http://localhost:3000`.
 
 ## 📧 Configuración de Email (Resend)
 
@@ -85,24 +53,29 @@ El formulario de contacto utiliza **Resend** para enviar emails de forma segura.
 
 📖 **Ver documentación completa:** [`docs/RESEND_SETUP.md`](docs/RESEND_SETUP.md)
 
+🔄 **¿Quieres usar este componente en otros proyectos?**  
+📘 **Guía de reutilización:** [`docs/RESEND_COMPONENT_GUIDE.md`](docs/RESEND_COMPONENT_GUIDE.md)
+
 ### Características:
 - ✅ 3,000 emails/mes gratis
 - ✅ API key segura en el servidor (no expuesta al cliente)
 - ✅ Plantillas HTML profesionales
 - ✅ Tracking completo
+- ✅ Componente reutilizable para otros proyectos
 
 ## 🏗️ Estructura del Proyecto
 
 ```
-├── api/
-│   └── server.ts          # Servidor Express con API de Resend
+├── app/                    # Next.js App Router
+│   ├── api/               # API Routes (Resend)
+│   ├── layout.tsx         # Layout raíz
+│   └── page.tsx           # Página principal
 ├── components/            # Componentes React
 │   ├── ContactForm.tsx    # Formulario de contacto
 │   ├── Hero.tsx           # Sección hero
 │   └── ...
 ├── docs/                  # Documentación
-│   ├── RESEND_SETUP.md    # Guía de configuración de Resend
-│   └── EMAIL_INTEGRATION_OPTIONS.md
+│   └── README.md          # Índice de documentación
 ├── hooks/                 # Custom hooks
 ├── utils/                 # Utilidades
 └── public/                # Archivos estáticos
@@ -124,8 +97,7 @@ Envía un email de contacto usando Resend.
 }
 ```
 
-### GET `/api/health`
-Verifica el estado del servidor.
+📖 **Más información:** Ver [`docs/RESEND_SETUP.md`](docs/RESEND_SETUP.md)
 
 ## 🚀 Build para Producción
 
@@ -135,11 +107,17 @@ npm run build
 
 Los archivos se generarán en la carpeta `dist/`.
 
-## 📚 Documentación Adicional
+## 📚 Documentación
 
-- [`docs/RESEND_SETUP.md`](docs/RESEND_SETUP.md) - Configuración detallada de Resend
-- [`docs/EMAIL_INTEGRATION_OPTIONS.md`](docs/EMAIL_INTEGRATION_OPTIONS.md) - Opciones de integración de email
-- [`docs/GITHUB_CONFIGURATION.md`](docs/GITHUB_CONFIGURATION.md) - Configuración de GitHub
+Toda la documentación está organizada en la carpeta [`docs/`](docs/). 
+
+📖 **Ver índice completo:** [`docs/README.md`](docs/README.md)
+
+### Guías Principales
+- [`docs/RESEND_SETUP.md`](docs/RESEND_SETUP.md) - Configuración de Resend para emails
+- [`docs/RESEND_COMPONENT_GUIDE.md`](docs/RESEND_COMPONENT_GUIDE.md) - **Guía para reutilizar el componente en otros proyectos**
+- [`docs/VERCEL_DEPLOY.md`](docs/VERCEL_DEPLOY.md) - Guía de despliegue en Vercel
+- [`docs/VERCEL_BUILD_TROUBLESHOOTING.md`](docs/VERCEL_BUILD_TROUBLESHOOTING.md) - Solución de problemas de build
 
 ## 🔒 Seguridad
 

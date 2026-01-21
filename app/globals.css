@@ -12,11 +12,34 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
   }
   
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-family-sans);
+  }
+  
+  /* Scroll snap para mejor experiencia de desplazamiento */
+  @supports (scroll-snap-type: y mandatory) {
+    html {
+      scroll-snap-type: y proximity;
+    }
+    
+    section {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+  
+  /* Animación Shimmer para HeroVideo */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

@@ -13,7 +13,8 @@ import { ServiceItem, VerticalItem, NavItem, PartnerLogo } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Servicios', href: '#services' },
-  { label: 'Sectores', href: '#verticals' },
+  { label: 'Soluciones', href: '#verticals' },
+  { label: 'Demos', href: '#demos' },
   { label: 'Nosotros', href: '#about' },
   { label: 'Contacto', href: '#contact' },
 ];
