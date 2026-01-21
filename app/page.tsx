@@ -8,14 +8,16 @@ import Services from '@/components/Services';
 import Verticals from '@/components/Verticals';
 import ContactForm from '@/components/ContactForm';
 import ContactCTA from '@/components/ContactCTA';
+import HeroBase from '@/components/HeroBase';
 
 export default function Home() {
   return (
     <>
-      <HeroBento />
-      <HeroTriptico />
-      <HeroMobile />
-      <Hero />
+      <HeroBase />
+      {/* <HeroBento /> */}
+      {/* <HeroTriptico /> */}
+      {/* <HeroMobile /> */}
+      {/* <Hero /> */}
       <Partners />
       <About />
       <Services />
