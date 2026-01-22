@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { PARTNERS } from '@/constants';
+import { PARTNERS } from '@/data/constants';
 
 const Partners: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const Partners: React.FC = () => {
             Trabajamos con las marcas líderes en tecnología audiovisual y comunicaciones unificadas.
           </p>
         </motion.div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PARTNERS.map((partner, index) => (
             <motion.a
@@ -53,7 +53,7 @@ const Partners: React.FC = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               )}
-              
+
               {/* Contenido */}
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-brand-primary transition-colors">

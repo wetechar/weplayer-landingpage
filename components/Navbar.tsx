@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import { NAV_ITEMS } from '@/constants';
+import { NAV_ITEMS } from '@/data/constants';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,20 +19,19 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm py-2 border-b border-gray-100'
           : 'bg-transparent py-4'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+          <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
             <div className={`relative transition-all duration-300 ${isScrolled ? 'h-14 brightness-0' : 'h-20 brightness-0 invert drop-shadow-lg'} w-auto`}>
-              <Image 
+              <Image
                 src="/images/logos/logo.png"
-                alt="We Tech - Integración Audiovisual" 
+                alt="We Tech - Integración Audiovisual"
                 width={isScrolled ? 56 : 80}
                 height={isScrolled ? 56 : 80}
                 className="h-full w-auto object-contain"
@@ -47,20 +46,18 @@ const Navbar: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-brand-accent ${
-                  isScrolled ? 'text-slate-600' : 'text-white/90'
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-brand-accent ${isScrolled ? 'text-slate-600' : 'text-white/90'
+                  }`}
               >
                 {item.label}
               </a>
             ))}
             <a
               href="#contact"
-              className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all transform hover:scale-105 ${
-                isScrolled
+              className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all transform hover:scale-105 ${isScrolled
                   ? 'bg-brand-dark text-white hover:bg-brand-primary'
                   : 'bg-white text-brand-dark hover:bg-gray-100'
-              }`}
+                }`}
             >
               Agendar Demo
             </a>
@@ -92,7 +89,7 @@ const Navbar: React.FC = () => {
                 {item.label}
               </a>
             ))}
-             <a
+            <a
               href="#contact"
               className="block w-full text-center mt-4 px-5 py-3 text-base font-bold text-white bg-brand-primary rounded-lg"
               onClick={() => setIsMobileMenuOpen(false)}

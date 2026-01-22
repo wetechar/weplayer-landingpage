@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { SERVICES } from '@/constants';
+import { SERVICES } from '@/data/constants';
 
 const Services: React.FC = () => {
   return (
@@ -44,7 +44,7 @@ const Services: React.FC = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               )}
-              
+
               {/* Contenido */}
               <div className="p-8">
                 <div className="w-14 h-14 rounded-xl bg-brand-light text-brand-primary flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-white transition-colors">
@@ -56,8 +56,8 @@ const Services: React.FC = () => {
                 <p className="text-slate-600 leading-relaxed mb-6">
                   {service.description}
                 </p>
-                <a 
-                  href="#contact" 
+                <a
+                  href="#contact"
                   className="flex items-center text-sm font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity"
                 >
                   <span>Conocer más</span>

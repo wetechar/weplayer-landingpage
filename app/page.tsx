@@ -16,11 +16,11 @@ export default function Home() {
       {/* <HeroTriptico /> */}
       {/* <HeroMobile /> */}
       <Hero />
-      <Partners />
+      {/* <Partners />
       <About />
       <Services />
       <Verticals />
-      <ContactForm />
+      <ContactForm /> */}
       <ContactCTA />
     </>
   );
