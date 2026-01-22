@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ChevronRight, PlayCircle, Instagram } from 'lucide-react';
-import { useInstagramPosts } from '@/hooks/useInstagramPosts';
-import { INSTAGRAM_CONFIG } from '@/utils/instagramConfig';
+import LogoHexagonal from './logos/LogoHexagonal';
+import HeroTriptico from './HeroTriptico';
+import HeroVideo from './HeroVideo';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -13,17 +12,6 @@ const Hero: React.FC = () => {
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrollY = useRef(0);
   const hasTriggeredAutoScroll = useRef(false);
-
-  // Obtener posts de Instagram automáticamente
-  const { posts, loading, error } = useInstagramPosts({
-    accessToken: INSTAGRAM_CONFIG.accessToken,
-    userId: INSTAGRAM_CONFIG.userId,
-    maxPosts: INSTAGRAM_CONFIG.maxPosts,
-    fallbackPosts: INSTAGRAM_CONFIG.fallbackPosts,
-  });
-
-  // Obtener el último post
-  const latestPost = posts[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,15 +21,15 @@ const Hero: React.FC = () => {
       const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
       const heroTop = heroRef.current.offsetTop;
       const viewportHeight = window.innerHeight;
-      
+
       // Detectar si el usuario está dentro del Hero
       const isInHero = currentScrollY >= heroTop - 50 && currentScrollY < heroBottom - viewportHeight * 0.5;
       const isNearHeroBottom = currentScrollY >= heroBottom - viewportHeight * 0.7;
-      
+
       // Determinar dirección del scroll
       const scrollDelta = currentScrollY - lastScrollY.current;
       const isScrollingDown = scrollDelta > 0;
-      
+
       // Si el usuario está cerca del final del Hero y comienza a hacer scroll hacia abajo
       if (isInHero && isScrollingDown && isNearHeroBottom && !hasTriggeredAutoScroll.current) {
         // Limpiar timeout anterior
@@ -56,10 +44,10 @@ const Hero: React.FC = () => {
             if (nextSection && !isScrolling && !hasTriggeredAutoScroll.current) {
               hasTriggeredAutoScroll.current = true;
               setIsScrolling(true);
-              
+
               // Calcular posición objetivo (centrar el siguiente componente)
               const targetPosition = nextSection.offsetTop - 80; // Ajuste para el navbar
-              
+
               // Scroll suave hacia el siguiente componente
               window.scrollTo({
                 top: targetPosition,
@@ -78,12 +66,12 @@ const Hero: React.FC = () => {
           }, 200);
         }
       }
-      
+
       // Resetear si el usuario hace scroll hacia arriba significativamente
       if (scrollDelta < -50) {
         hasTriggeredAutoScroll.current = false;
       }
-      
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -100,67 +88,68 @@ const Hero: React.FC = () => {
   }, [isScrolling]);
 
   return (
-    <section 
+    <section
       ref={heroRef}
       id="hero"
-      className="relative h-screen flex items-center justify-center overflow-hidden snap-start" 
-      style={{ backgroundColor: '#1498d5' }}
+      className="relative h-screen flex items-center overflow-hidden snap-start"
+      style={{ backgroundColor: '#1498D5' }}
     >
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <div className="w-full h-full bg-linear-to-br from-[#1498d5] via-[#0e7ba8] to-[#0d6b94]" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#1498d5]/95 via-[#1498d5]/85 to-transparent" />
-      </div>
+      {/* Sombra muy leve en el fondo */}
+      <div className="absolute inset-0 z-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)]" />
+      {/* Content Container */}
+      <div className="relative grid grid-cols-1 grid-rows-2 z-10 w-full h-full">
+        {/* Video Section - Full Width */}
+        <div className="flex items-center justify-center w-full h-full">
+          <HeroVideo />
+        </div>
+        {/* Text Content Section - With max-width */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 xl:gap-24 items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Text Content */}
-          <div className="max-w-3xl">
+          {/* Text Content - Left Side */}
+          <div className="flex flex-col justify-center text-left">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex items-center space-x-2 mb-6">
-                <span className="h-px w-12 bg-white/40" />
-                <span className="text-white/90 font-bold tracking-wider uppercase text-sm">
-                  AVIXA Member
+              <h1 className="text-white font-black uppercase leading-tight mb-6">
+                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2">
+                  CREEMOS EN
                 </span>
-              </div>
-              
-              <h1 className="uppercase text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
-                Creemos en el <br/>
-                Poder de <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-white/95 to-white/90 drop-shadow-md">
-                  Conectar Personas
+                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2">
+                  EL PODER
+                </span>
+                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2">
+                  DE CONECTAR
+                </span>
+                <span className="block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6">
+                  PERSONAS
                 </span>
               </h1>
-              
-              <p className="text-lg md:text-xl text-white/95 mb-10 max-w-2xl font-light leading-relaxed drop-shadow-md">
-                Transformamos espacios con tecnología audiovisual. Simplificamos la complejidad tecnológica para crear entornos colaborativos, eficientes y de alto impacto.
-              </p>
-              {/* Botones de contacto y showreel */}
-              {/* <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="#contact"
-                  className="group flex items-center justify-center px-8 py-4 bg-brand-primary hover:bg-brand-accent text-white font-semibold rounded-lg transition-all shadow-lg shadow-brand-primary/25"
-                >
-                  Solicitar Cotización
-                  <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
-                </a>
-                
-                <button className="group flex items-center justify-center px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 text-white font-semibold rounded-lg transition-all">
-                  <PlayCircle className="mr-2 text-brand-accent" size={20} />
-                  Ver Showreel
-                </button>
-              </div> */}
+
+              {/* Línea de subrayado final - ancho total del texto */}
+              <div className="h-1 bg-white w-full" />
+            </motion.div>
+          </div>
+
+          {/* Logo - Right Side (oculto en mobile, visible desde md) */}
+          <div className="hidden md:flex items-center justify-end">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="relative"
+            >
+              <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80 text-white">
+                <LogoHexagonal color="white" />
+              </div>
             </motion.div>
           </div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/30"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}

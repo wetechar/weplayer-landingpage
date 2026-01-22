@@ -35,7 +35,7 @@ export default function HeroTriptico() {
   }, []);
 
   return (
-    <section className="relative w-full h-[90vh] md:h-screen overflow-hidden bg-black font-sans">
+    <section className="relative w-full h-full">
       <div className="flex flex-col md:flex-row h-full w-full gap-2 p-2">
         {clips.map((video) => (
           <div 
