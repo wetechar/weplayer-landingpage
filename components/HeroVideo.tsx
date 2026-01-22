@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import LogoVector from './logos/LogoVector';
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -15,19 +17,34 @@ export default function HeroVideo() {
 
   return (
     <div className="relative h-full w-full overflow-hidden">
+      {/* Video Background */}
       <video
         ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className="absolute left-1/2 top-1/2 h-full w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover"
+        className="absolute left-1/2 top-1/2 h-full w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover z-0"
       >
         <source src="/videos/Hero.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay opcional */}
-      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute inset-0 bg-black/20 z-10" />
+
+      {/* LogoVector centrado - La estrella */}
+      <div className="absolute inset-0 flex items-end justify-center md: pb-10 lg: xl: z-20">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <LogoVector 
+            size="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80"
+            priority={true}
+          />
+        </motion.div>
+      </div>
     </div>
   );
 }
