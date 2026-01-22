@@ -9,7 +9,7 @@ export default function HeroVideo() {
     if (videoRef.current) {
       // Ajustar la velocidad de reproducción del video
       // Valores: 0.5 = 50% más lento, 0.75 = 25% más lento, 1.0 = velocidad normal, 1.5 = 50% más rápido
-      videoRef.current.playbackRate = 0.3; // ← AQUÍ SE AJUSTA LA VELOCIDAD (0.75 = 75% de velocidad normal)
+      videoRef.current.playbackRate = 0.5; // ← AQUÍ SE AJUSTA LA VELOCIDAD (0.75 = 75% de velocidad normal)
     }
   }, []);
 
@@ -31,4 +31,3 @@ export default function HeroVideo() {
     </div>
   );
 }
-  
