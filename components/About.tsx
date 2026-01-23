@@ -8,13 +8,13 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="h-[calc(100vh-70px)] flex items-center overflow-hidden snap-start"
+      className="min-h-[calc(100vh-70px)] md:h-[calc(100vh-70px)] flex items-start md:items-center overflow-hidden snap-start"
     >
       {/* Content Container */}
-      <div className="relative bg-white/95grid grid-cols-1 md:grid-cols-1 grid-rows-[minmax(0,1fr)_minmax(0,4fr)_minmax(0,2fr)] w-full h-full">
+      <div className="relative bg-white/95 grid grid-cols-1 md:grid-cols-1 grid-rows-[minmax(0,auto)_minmax(0,1fr)_minmax(0,auto)] md:grid-rows-[minmax(0,1fr)_minmax(0,4fr)_minmax(0,2fr)] w-full h-full">
         {/* AVIXA Member Logo - Top Right - Overlay sobre el banner */}
-        <div className="min-h-0 w-full col-start-1 row-start-1 place-self-end-safe bg-white/95 backdrop-blur-sm px-4 rounded-lg shadow-lg z-10">
-          <div className=" relative h-[70px] flex justify-end">
+        <div className="min-h-0 w-full col-start-1 row-start-1 place-self-end md:place-self-end-safe bg-white/95 backdrop-blur-sm px-4 rounded-lg shadow-lg z-10 py-2 md:py-0">
+          <div className="relative h-[50px] md:h-[70px] flex justify-end">
             <Image
               src="/images/logos/avixa.png"
               alt="AVIXA Member"
@@ -25,10 +25,10 @@ const About: React.FC = () => {
           </div>
         </div>
         {/* Main Banner Section */}
-        <div className="min-h-0 overflow-hidden  w-full col-start-1 row-start-2">
+        <div className="min-h-0 overflow-hidden w-full col-start-1 row-start-2">
           <div className="grid grid-cols-1 md:grid-cols-2 relative h-full">
             {/* Left Half - Background Image */}
-            <div className="relative w-full h-full ">
+            <div className="relative w-full h-full min-h-[250px] md:min-h-0">
               <Image
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
                 alt="Persona trabajando con tecnología"
@@ -39,7 +39,7 @@ const About: React.FC = () => {
             </div>
             {/* Right Half - Blue Information Panel */}
             <div
-              className="flex flex-col justify-center px-6 md:px-10 lg:px-14 xl:px-16 py-4 md:py-6 lg:py-8 overflow-auto"
+              className="flex flex-col justify-center px-4 md:px-10 lg:px-14 xl:px-16 py-6 md:py-6 lg:py-8 overflow-auto min-h-[300px] md:min-h-0"
               style={{ backgroundColor: '#1498D5' }}
             >
               <motion.div
@@ -58,13 +58,13 @@ const About: React.FC = () => {
           </div>
         </div>
         {/* Bottom Text Section */}
-        <div className="min-h-0 overflow-auto w-full col-start-1 row-start-3 flex justify-center items-center">
+        <div className="min-h-0 overflow-auto w-full col-start-1 row-start-3 flex justify-center items-start md:items-center py-4 md:py-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <div className="mx-auto flex flex-col justify-start gap-6 w-full max-w-3xl">
+            <div className="mx-auto flex flex-col justify-start gap-4 md:gap-6 w-full max-w-3xl px-4 md:px-0">
               <h3
                 className="text-left text-xl text-blue-500 font-bold uppercase leading-tight"
                 style={{ color: '#1498D5' }}
