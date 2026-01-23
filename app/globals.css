@@ -43,3 +43,9 @@
     }
   }
 }
+
+@layer utilities {
+  .font-montserrat {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+}

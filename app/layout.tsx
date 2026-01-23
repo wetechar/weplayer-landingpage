@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Montserrat } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
 
 export const metadata: Metadata = {
   title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
@@ -70,7 +71,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={`${inter.className} ${montserrat.variable}`} suppressHydrationWarning>
         <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-brand-primary selection:text-white">
           <Navbar />
           <main>{children}</main>
