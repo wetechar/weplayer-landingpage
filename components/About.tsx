@@ -30,7 +30,7 @@ const About: React.FC = () => {
             {/* Left Half - Background Image */}
             <div className="relative w-full h-full min-h-[250px] md:min-h-0">
               <Image
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
+                src="/images/about/about-workspace.avif"
                 alt="Persona trabajando con tecnología"
                 fill
                 className="object-cover grayscale brightness-90"
