@@ -91,8 +91,7 @@ const Hero: React.FC = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative h-[calc(100vh-70px)] flex items-center overflow-hidden snap-start"
-      style={{ backgroundColor: '#1498D5' }}
+      className="relative h-[calc(100vh-70px)] flex items-center overflow-hidden snap-start bg-brand-blue"
     >
       {/* Sombra muy leve en el fondo */}
       <div className="absolute inset-0 z-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)]" />

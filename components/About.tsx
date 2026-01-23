@@ -11,9 +11,11 @@ const About: React.FC = () => {
       className="min-h-[calc(100vh-70px)] md:h-[calc(100vh-70px)] flex items-start md:items-center overflow-hidden snap-start"
     >
       {/* Content Container */}
-      <div className="relative bg-white/95 grid grid-cols-1 md:grid-cols-1 grid-rows-[minmax(0,auto)_minmax(0,1fr)_minmax(0,auto)] md:grid-rows-[minmax(0,1fr)_minmax(0,4fr)_minmax(0,2fr)] w-full h-full">
+      <div className="relative bg-white/95 grid grid-cols-1 grid-rows-[minmax(0,auto)_minmax(0,1fr)_minmax(0,auto)] 
+      md:grid-rows-[minmax(0,1fr)_minmax(0,4fr)_minmax(0,2fr)] w-full h-full">
         {/* AVIXA Member Logo - Top Right - Overlay sobre el banner */}
-        <div className="min-h-0 w-full col-start-1 row-start-1 place-self-end md:place-self-end-safe bg-white/95 backdrop-blur-sm px-4 rounded-lg shadow-lg z-10 py-2 md:py-0">
+        <div className="min-h-0 w-full col-start-1 row-start-1 place-self-end md:place-self-end-safe bg-white/95 
+        backdrop-blur-sm px-4 rounded-lg shadow-lg z-10 py-2 md:py-0">
           <div className="relative h-[50px] md:h-[70px] flex justify-end">
             <Image
               src="/images/logos/avixa.png"
@@ -39,8 +41,7 @@ const About: React.FC = () => {
             </div>
             {/* Right Half - Blue Information Panel */}
             <div
-              className="flex flex-col justify-center px-4 md:px-10 lg:px-14 xl:px-16 py-6 md:py-6 lg:py-8 overflow-auto min-h-[300px] md:min-h-0"
-              style={{ backgroundColor: '#1498D5' }}
+              className="flex flex-col justify-center px-4 md:px-10 lg:px-14 xl:px-16 py-6 md:py-6 lg:py-8 overflow-auto min-h-[300px] md:min-h-0 bg-brand-blue"
             >
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -66,8 +67,7 @@ const About: React.FC = () => {
           >
             <div className="mx-auto flex flex-col justify-start gap-4 md:gap-6 w-full max-w-3xl px-4 md:px-0">
               <h3
-                className="text-left text-xl text-blue-500 font-bold uppercase leading-tight"
-                style={{ color: '#1498D5' }}
+                className="text-left text-xl text-brand-blue font-bold uppercase leading-tight"
               >
                 <span className="block">LA COMUNICACIÓN HUMANA ES EL PROCESO DE MAYOR IMPACTO PARA</span>
                 <span className="block">LAS PERSONAS Y LAS ORGANIZACIONES</span>
