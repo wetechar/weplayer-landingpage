@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+      className={`fixed w-full z-50 transition-all duration-300 min-h-[70px] ${isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-sm py-2 border-b border-gray-100'
           : 'bg-transparent py-4'
         }`}

@@ -10,7 +10,7 @@ const Verticals: React.FC = () => {
   const [activeVertical, setActiveVertical] = useState(VERTICALS[0]);
 
   return (
-    <section id="verticals" className="py-24 bg-slate-900 text-white overflow-hidden scroll-mt-24">
+    <section id="verticals" className="py-24 bg-slate-900 text-white overflow-hidden scroll-mt-[112px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 

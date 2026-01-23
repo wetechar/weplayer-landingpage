@@ -7,7 +7,7 @@ import { PARTNERS } from '@/data/constants';
 
 const Partners: React.FC = () => {
   return (
-    <section id="partners" className="bg-white py-24 border-b border-gray-100 scroll-mt-24">
+    <section id="partners" className="bg-white py-24 border-b border-gray-100 scroll-mt-[112px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -7,7 +7,7 @@ import { SERVICES } from '@/data/constants';
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="py-24 bg-white scroll-mt-24">
+    <section id="services" className="py-24 bg-white scroll-mt-[112px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-brand-primary font-semibold tracking-wide uppercase text-sm mb-3">

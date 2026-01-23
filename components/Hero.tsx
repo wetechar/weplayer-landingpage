@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
               setIsScrolling(true);
 
               // Calcular posición objetivo (centrar el siguiente componente)
-              const targetPosition = nextSection.offsetTop - 80; // Ajuste para el navbar
+              const targetPosition = nextSection.offsetTop - 112; // Ajuste para el navbar (min-h-[112px])
 
               // Scroll suave hacia el siguiente componente
               window.scrollTo({
@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative h-screen flex items-center overflow-hidden snap-start"
+      className="relative h-[calc(100vh-70px)] flex items-center overflow-hidden snap-start"
       style={{ backgroundColor: '#1498D5' }}
     >
       {/* Sombra muy leve en el fondo */}

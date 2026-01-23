@@ -125,7 +125,7 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-linear-to-br from-slate-50 to-slate-100 scroll-mt-24">
+    <section id="contact" className="py-24 bg-linear-to-br from-slate-50 to-slate-100 scroll-mt-[112px]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

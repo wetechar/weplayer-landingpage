@@ -6,7 +6,7 @@ import { Mail, Download } from 'lucide-react';
 
 const ContactCTA: React.FC = () => {
   return (
-    <section id="contact" className="py-24 bg-brand-primary relative overflow-hidden scroll-mt-24">
+    <section id="contact" className="py-24 bg-brand-primary relative overflow-hidden scroll-mt-[112px]">
       {/* Abstract patterns */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-white/10 blur-3xl" />
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-dark/10 blur-3xl" />
