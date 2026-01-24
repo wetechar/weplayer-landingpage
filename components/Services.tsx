@@ -47,6 +47,19 @@ const Services: React.FC = () => {
                   transition={{ delay: index * 0.1, duration: 0.8, ease: "easeOut" }}
                   className="group rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full relative"
                 >
+                  {/* Imagen visible solo en mobile */}
+                  {service.imageUrl && (
+                    <div className="block md:hidden relative w-full h-48">
+                      <Image
+                        src={service.imageUrl}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="100vw"
+                      />
+                    </div>
+                  )}
+
                   {/* Imagen de fondo completa - solo en desktop */}
                   {service.imageUrl && (
                     <div className="hidden md:block absolute inset-0 z-0">
@@ -64,7 +77,7 @@ const Services: React.FC = () => {
                   )}
 
                   {/* Contenido superpuesto - desde la mitad hacia abajo */}
-                  <div className="relative z-10 p-4 md:p-6 flex flex-col flex-grow mt-[50%] md:mt-[50%]">
+                  <div className="relative z-10 p-4 md:p-6 flex flex-col flex-grow md:mt-[20%] lg:mt-[50%]">
                     <h4 className="text-base md:text-lg font-bold text-slate-900 md:text-white mb-2 group-hover:text-white transition-colors">
                       {service.title}
                     </h4>
