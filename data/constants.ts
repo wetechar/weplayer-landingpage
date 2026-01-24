@@ -12,7 +12,7 @@ import {
 import { ServiceItem, VerticalItem, NavItem, PartnerLogo } from '../types';
 
 export const NAV_ITEMS: NavItem[] = [
-  // { label: 'Servicios', href: '#services' },
+  { label: 'Servicios', href: '#services' },
   // { label: 'Soluciones', href: '#verticals' },
   // { label: 'Demos', href: '#demos' },
   { label: 'Nosotros', href: '#about' },
@@ -25,42 +25,42 @@ export const SERVICES: ServiceItem[] = [
     title: 'Workspace Collaboration',
     description: 'Realizamos el diseño y la concepción de espacios open office, huddle rooms, soundmasking, adaptación acústica de ambientes, que maximizan la eficiencia, interacción y productividad de tus equipos de trabajo.',
     icon: Handshake,
-    imageUrl: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop', // Hands typing on laptop keyboard
+    imageUrl: '/images/services/workspace.webp', // Hands typing on laptop keyboard
   },
   {
     id: 'unified-it',
     title: 'Unified IT & Cloud',
     description: 'Consultoría en inversiones tecnológicas para Conectividad, Comunicaciones unificadas, Cloud, IoT, cableado estructurado, seguridad. Sea una oficina grande o pequeña, aseguramos el planeamiento correcto para un entorno eficiente y seguro.',
     icon: Network,
-    imageUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop', // Person looking at computer screen
+    imageUrl: '/images/services/cloud.webp', // Person looking at computer screen
   },
   {
     id: 'managed-services',
     title: 'Managed Services Provider',
     description: 'Acuerdos de soporte personalizados, medición y analíticas de uso, cursos y capacitación on demand, mesas de ayuda, AVNoc, gestión de activos y otros tipos de outsourcing a medida.',
     icon: Headset,
-    imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop', // Data center/server room
+    imageUrl: '/images/services/msp.webp', // Data center/server room
   },
   {
     id: 'entertainment',
     title: 'Home Entertainment Gear',
     description: 'El máximo entretenimiento en tu hogar a través del cine en casa, música en todos tus ambientes, control automatizado (domótica compatible con Google Home y Amazon Alexa), gaming, HiFi Stereo, WiFi, alarmas y más.',
     icon: Home,
-    imageUrl: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1200&auto=format&fit=crop', // Home theater/living room
+    imageUrl: '/images/services/home.webp', // Home theater/living room
   },
   {
     id: 'verticals',
     title: 'Vertical Market Solutions',
     description: 'Consultoría por mercado vertical, escalable según rubro e industria: Casinos, shoppings, desarrolladores, laboratorios, salud, educación, energía, corporativo, estudios arquitectura, banca/finanzas, gobierno y otros.',
     icon: Building2,
-    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop', // Blueprints/architectural plans
+    imageUrl: '/images/services/vertical.webp', // Blueprints/architectural plans
   },
   {
     id: 'partnership',
     title: 'Professional Partnership',
     description: 'Colaboramos junto a estudios y profesionales del diseño y la construcción desde la concepción del proyecto arquitectónico. -Open Work Space collaborations, Biophilic Design, Sound Masking, sistemas CCTV, control de acceso, música funcional.',
     icon: Cpu,
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop', // Aerial office view
+    imageUrl: '/images/services/partnership.webp', // Aerial office view
   },
 ];
 

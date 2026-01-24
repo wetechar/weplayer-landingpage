@@ -12,13 +12,10 @@ import ContactCTA from '@/components/ContactCTA';
 export default function Home() {
   return (
     <>
-      {/* <HeroBento /> */}
-      {/* <HeroTriptico /> */}
-      {/* <HeroMobile /> */}
       <Hero />
       {/* <Partners /> */}
       <About />
-      {/* <Services /> */}
+      <Services />
       {/* <Verticals /> */}
       {/* <ContactForm /> */}
       <ContactCTA />
