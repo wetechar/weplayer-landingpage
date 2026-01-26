@@ -46,21 +46,21 @@ const Navbar: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-brand-accent ${isScrolled ? 'text-slate-600' : 'text-white/90'
-                  }`}
+                className={
+                  item.label === 'Contacto'
+                    ? `px-4 py-2 text-sm font-semibold rounded-full transition-all transform hover:scale-105 ${
+                        isScrolled
+                          ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-white hover:shadow-lg'
+                          : 'bg-brand-primary/70 backdrop-blur-sm text-white hover:bg-brand-primary/90 border border-brand-primary/30'
+                      }`
+                    : `text-sm font-medium transition-colors hover:text-brand-accent ${
+                        isScrolled ? 'text-slate-600' : 'text-white/90'
+                      }`
+                }
               >
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all transform hover:scale-105 ${isScrolled
-                  ? 'bg-brand-dark text-white hover:bg-brand-primary'
-                  : 'bg-white text-brand-dark hover:bg-gray-100'
-                }`}
-            >
-              Agendar Demo
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,19 +83,16 @@ const Navbar: React.FC = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="block px-3 py-3 text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-slate-50 rounded-md"
+                className={
+                  item.label === 'Contacto'
+                    ? 'block w-full text-center mt-4 px-5 py-3 text-base font-bold text-white bg-gradient-to-r from-brand-primary to-brand-accent rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105'
+                    : 'block px-3 py-3 text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-slate-50 rounded-md'
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="block w-full text-center mt-4 px-5 py-3 text-base font-bold text-white bg-brand-primary rounded-lg"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Agendar Demo
-            </a>
           </div>
         </div>
       )}
