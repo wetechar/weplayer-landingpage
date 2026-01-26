@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
                     ? `px-4 py-2 text-sm font-semibold rounded-full transition-all transform hover:scale-105 ${
                         isScrolled
                           ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-white hover:shadow-lg'
-                          : 'bg-brand-primary/70 backdrop-blur-sm text-white hover:bg-brand-primary/90 border border-brand-primary/30'
+                          : 'bg-transparent text-white border-2 border-brand-primary hover:border-brand-accent hover:bg-brand-primary'
                       }`
                     : `text-sm font-medium transition-colors hover:text-brand-accent ${
                         isScrolled ? 'text-slate-600' : 'text-white/90'
