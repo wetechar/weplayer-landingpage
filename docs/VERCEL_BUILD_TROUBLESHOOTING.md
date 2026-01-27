@@ -1,5 +1,68 @@
 # 🔧 Solución de Problemas de Build en Vercel
 
+## ❌ Error: PrismaClientInitializationError - Prisma Client no generado
+
+### Problema
+
+```
+Error [PrismaClientInitializationError]: Prisma has detected that this project was built on Vercel, which caches dependencies. This leads to an outdated Prisma Client because Prisma's auto-generation isn't triggered.
+```
+
+**Causa**: Vercel cachea las dependencias de `node_modules`, lo que impide que Prisma Client se genere automáticamente durante el build.
+
+### Solución ✅
+
+El script de build ha sido actualizado para incluir `prisma generate`:
+
+```json
+{
+  "scripts": {
+    "build": "prisma generate && next build",
+    "postinstall": "prisma generate"
+  }
+}
+```
+
+**Cambios realizados:**
+
+1. ✅ `prisma generate` agregado al script `build` (se ejecuta antes de `next build`)
+2. ✅ Script `postinstall` agregado (se ejecuta automáticamente después de `npm install`)
+
+### Verificación
+
+1. **Verifica que los cambios estén en `package.json`**:
+
+   ```bash
+   cat package.json | grep -A 2 '"build"'
+   ```
+
+2. **Prueba el build localmente**:
+
+   ```bash
+   npm run build
+   ```
+
+3. **Haz commit y push**:
+
+   ```bash
+   git add package.json
+   git commit -m "fix: agregar prisma generate al build para Vercel"
+   git push
+   ```
+
+4. **Vercel automáticamente**:
+   - Detectará los cambios
+   - Ejecutará `npm install` (que ejecutará `postinstall` → `prisma generate`)
+   - Ejecutará `npm run build` (que ejecutará `prisma generate && next build`)
+   - El build debería completarse exitosamente
+
+### Referencias
+
+- [Documentación de Prisma - Vercel](https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-vercel)
+- [Prisma Client Generation](https://www.prisma.io/docs/concepts/components/prisma-client/generating-prisma-client)
+
+---
+
 ## ❌ Error: "Command 'npm run build' exited with 1"
 
 ### Posibles Causas y Soluciones
@@ -50,7 +113,8 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 
 **Problema**: Rollup tiene dependencias opcionales específicas de plataforma que npm a veces no instala correctamente.
 
-**Solución**: 
+**Solución**:
+
 - El archivo `.npmrc` está configurado con `optional=true` para instalar dependencias opcionales
 - El `vercel.json` usa `npm install --include=optional` para asegurar la instalación
 - Asegúrate de que `package-lock.json` esté commitado en el repositorio
@@ -66,6 +130,7 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 **Problema**: Archivos de Next.js del merge anterior pueden confundir a Vercel.
 
 **Solución**: Asegúrate de que `.vercelignore` excluya:
+
 - `next.config.js`
 - `src/app/`
 - `postcss.config.mjs`
@@ -130,6 +195,7 @@ En Vercel Dashboard, verifica que todas las variables de entorno estén configur
 ### Variables de Entorno en Vercel
 
 **Production, Preview, Development:**
+
 - `RESEND_API_KEY`
 - `EMAIL_DESTINATARIO`
 - `RESEND_FROM_EMAIL`
@@ -137,17 +203,20 @@ En Vercel Dashboard, verifica que todas las variables de entorno estén configur
 ## 🚀 Solución Rápida
 
 1. **Limpiar y Reinstalar**:
+
    ```bash
    rm -rf node_modules package-lock.json
    npm install
    ```
 
 2. **Verificar Build Local**:
+
    ```bash
    npm run build
    ```
 
 3. **Push a GitHub**:
+
    ```bash
    git add .
    git commit -m "fix: actualizar configuración de build"
