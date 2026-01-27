@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -15,10 +16,10 @@ export const metadata: Metadata = {
   robots: 'index, follow',
   openGraph: {
     type: 'website',
-    url: 'https://wetechar.com.ar/',
+    url: 'https://wetechlatam.com/',
     title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
     description: 'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
-    images: ['https://wetechar.com.ar/images/og-image.jpg'],
+    images: ['https://wetechlatam.com/images/og-image.jpg'],
     locale: 'es_AR',
     siteName: 'We Tech',
   },
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
     description: 'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
-    images: ['https://wetechar.com.ar/images/og-image.jpg'],
+    images: ['https://wetechlatam.com/images/og-image.jpg'],
   },
   icons: {
     icon: '/images/Vector-Wetechar.svg',
@@ -48,8 +49,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'We Tech',
-              url: 'https://wetechar.com.ar',
-              logo: 'https://wetechar.com.ar/images/Vector-Wetechar.svg',
+              url: 'https://wetechlatam.com',
+              logo: 'https://wetechlatam.com/images/Vector-Wetechar.svg',
               description: 'Empresa integradora de tecnología audiovisual enfocada en crear experiencias conectadas para entornos corporativos, comerciales y residenciales.',
               address: {
                 '@type': 'PostalAddress',
@@ -72,11 +73,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} ${montserrat.variable}`} suppressHydrationWarning>
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-brand-primary selection:text-white">
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <UserProvider>
+          <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-brand-primary selection:text-white">
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </UserProvider>
       </body>
     </html>
   );

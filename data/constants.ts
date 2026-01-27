@@ -16,6 +16,7 @@ export const NAV_ITEMS: NavItem[] = [
   // { label: 'Soluciones', href: '#verticals' },
   // { label: 'Demos', href: '#demos' },
   { label: 'Nosotros', href: '#about' },
+  { label: 'Tienda', href: '/shop' },
   { label: 'Contacto', href: '#contact' },
 ];
 

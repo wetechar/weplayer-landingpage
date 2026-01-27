@@ -1,0 +1,112 @@
+// Prisma Schema para Antigravity E-commerce Multi-vendedor
+// Base de datos: PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Prisma Accelerate se configura automáticamente si PRISMA_DATABASE_URL está disponible
+  // El cliente de Prisma usará PRISMA_DATABASE_URL si existe, sino usará DATABASE_URL
+}
+
+enum Role {
+  ADMIN
+  SELLER
+  CUSTOMER
+}
+
+model User {
+  id        String   @id @default(cuid()) // Auth0 user_id
+  email     String   @unique
+  name      String?
+  role      Role     @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relaciones
+  store     Store?   @relation("StoreOwner")
+  orders    Order[]
+  
+  @@index([email])
+  @@index([role])
+}
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  description String?
+  ownerId   String   @unique
+  owner     User     @relation("StoreOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relaciones
+  products  Product[]
+  
+  @@index([slug])
+  @@index([ownerId])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String
+  description String?   @db.Text
+  price       Decimal   @db.Decimal(10, 2)
+  stock       Int       @default(0)
+  images      String[]  // Array de URLs de imágenes
+  isActive    Boolean   @default(true)
+  storeId     String
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relaciones
+  orderItems  OrderItem[]
+  
+  @@unique([storeId, slug])
+  @@index([storeId])
+  @@index([slug])
+  @@index([isActive])
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  status      OrderStatus @default(PENDING)
+  total       Decimal     @db.Decimal(10, 2)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  // Relaciones
+  items       OrderItem[]
+  
+  @@index([userId])
+  @@index([status])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal  @db.Decimal(10, 2) // Precio al momento de la compra
+  
+  @@index([orderId])
+  @@index([productId])
+}
