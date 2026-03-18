@@ -6,7 +6,7 @@ import { Mail, Download } from 'lucide-react';
 
 const ContactCTA: React.FC = () => {
   return (
-    <section id="contact" className="py-24 bg-brand-primary relative overflow-hidden scroll-mt-[112px]">
+    <section id="contact-cta" className="py-24 bg-brand-primary relative overflow-hidden scroll-mt-[112px]">
       {/* Abstract patterns */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-white/10 blur-3xl" />
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-dark/10 blur-3xl" />
@@ -26,8 +26,12 @@ const ContactCTA: React.FC = () => {
           className="flex flex-col sm:flex-row justify-center gap-4"
         >
           <a
-            href="mailto:ventasse@wetechar.com"
+            href="#contact"
             className="group flex items-center justify-center px-8 py-4 bg-white text-brand-primary font-bold rounded-lg shadow-xl hover:bg-gray-50 transition-all transform hover:-translate-y-1"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
             <Mail className="mr-2" size={20} />
             Contactar Especialista
