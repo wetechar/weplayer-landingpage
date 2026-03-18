@@ -18,7 +18,10 @@ const Navbar: React.FC = () => {
 
   // Filtrar items de navegación - excluir "Tienda" cuando estamos en shop
   const navItems = isShopRoute
-    ? NAV_ITEMS.filter(item => item.label !== 'Tienda' && item.label !== 'Servicios' && item.label !== 'Nosotros')
+    ? NAV_ITEMS.filter(item => {
+        //item.label !== 'Tienda';
+        return true;
+      })
     : NAV_ITEMS;
 
   useEffect(() => {
