@@ -16,7 +16,7 @@ export default function HeroVideo() {
   }, []);
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className='relative h-full w-full overflow-hidden'>
       {/* Video Background */}
       <video
         ref={videoRef}
@@ -24,23 +24,23 @@ export default function HeroVideo() {
         muted
         loop
         playsInline
-        className="absolute left-1/2 top-1/2 h-full w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover z-0"
+        className='absolute left-1/2 top-1/2 h-full w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover z-0'
       >
-        <source src="/videos/Hero.mp4" type="video/mp4" />
+        <source src='/videos/Hero3.mp4' type='video/mp4' />
       </video>
 
       {/* Overlay opcional */}
-      <div className="absolute inset-0 bg-black/20 z-10" />
+      <div className='absolute inset-0 bg-black/20 z-10' />
 
       {/* LogoVector centrado - La estrella */}
-      <div className="absolute inset-0 flex items-end justify-center md: pb-10 lg: xl: z-20">
+      <div className='absolute inset-0 flex items-end justify-center md: pb-10 lg: xl: z-20'>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
         >
-          <LogoVector 
-            size="w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80"
+          <LogoVector
+            size='w-40 h-40 md:w-40 md:h-40 w-40 lg:h-40 lg:w-40 xl:w-50 xl:h-50'
             priority={true}
           />
         </motion.div>

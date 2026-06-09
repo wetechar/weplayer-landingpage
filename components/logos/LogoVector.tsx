@@ -19,15 +19,17 @@ const LogoVector: React.FC<LogoVectorProps> = ({
   priority = false,
 }) => {
   return (
-    <div className={`relative ${size} ${className} ${showBorder ? 'border' : ''}`}>
+    <div
+      className={`relative ${size} ${className} ${showBorder ? 'border' : ''}`}
+    >
       <Image
-        src="/images/Vector-Wetechar.svg"
-        alt="We Tech Vector Logo"
+        src='/images/Vector-Wetechar.svg'
+        alt='We Tech Vector Logo'
         fill
-        className="object-contain"
+        className='object-contain'
         priority={priority}
         quality={95}
-        sizes="(max-width: 768px) 192px, (max-width: 1024px) 224px, 320px"
+        sizes='(max-width: 768px) 192px, (max-width: 1024px) 224px, 320px'
       />
     </div>
   );

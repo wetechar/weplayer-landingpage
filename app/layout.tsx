@@ -6,19 +6,25 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
-const montserrat = Montserrat({ subsets: ['latin'], variable: '--font-montserrat' });
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
 
 export const metadata: Metadata = {
   title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
-  description: 'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
-  keywords: 'integración audiovisual, AV, comunicaciones unificadas, señalización digital, domótica, videoconferencia, Zoom, Teams, Crestron, Logitech, Argentina',
+  description:
+    'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
+  keywords:
+    'integración audiovisual, AV, comunicaciones unificadas, señalización digital, domótica, videoconferencia, Zoom, Teams, Crestron, Logitech, Argentina',
   authors: [{ name: 'We Tech' }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     url: 'https://wetechlatam.com/',
     title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
-    description: 'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
+    description:
+      'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
     images: ['https://wetechlatam.com/images/og-image.jpg'],
     locale: 'es_AR',
     siteName: 'We Tech',
@@ -26,7 +32,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'We Tech | Integración Audiovisual y Soluciones Tecnológicas',
-    description: 'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
+    description:
+      'Transformamos espacios con tecnología audiovisual. Soluciones de colaboración, comunicaciones unificadas, señalización digital y domótica para empresas en Argentina.',
     images: ['https://wetechlatam.com/images/og-image.jpg'],
   },
   icons: {
@@ -40,10 +47,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang='es'>
       <head>
         <script
-          type="application/ld+json"
+          type='application/ld+json'
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -51,7 +58,8 @@ export default function RootLayout({
               name: 'We Tech',
               url: 'https://wetechlatam.com',
               logo: 'https://wetechlatam.com/images/Vector-Wetechar.svg',
-              description: 'Empresa integradora de tecnología audiovisual enfocada en crear experiencias conectadas para entornos corporativos, comerciales y residenciales.',
+              description:
+                'Empresa integradora de tecnología audiovisual enfocada en crear experiencias conectadas para entornos corporativos, comerciales y residenciales.',
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: 'Buenos Aires',
@@ -72,9 +80,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} ${montserrat.variable}`} suppressHydrationWarning>
+      <body
+        className={`${inter.className} ${montserrat.variable}`}
+        suppressHydrationWarning
+      >
         <UserProvider>
-          <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-brand-primary selection:text-white">
+          <div className='min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-brand-primary selection:text-white'>
             <Navbar />
             <main>{children}</main>
             <Footer />
