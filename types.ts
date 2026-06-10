@@ -28,3 +28,17 @@ export interface PartnerLogo {
   subtitle?: string;
   description?: string;
 }
+
+export interface SuccessCase {
+  id: string;
+  title: string;
+  client: string;
+  location: string;
+  sector: string;
+  description: string;
+  tags: string[];
+  imageUrl: string;
+  videoUrl?: string;
+  featured?: boolean;
+  year?: string;
+}

@@ -9,10 +9,11 @@ import {
   Mic,
   Video
 } from 'lucide-react';
-import { ServiceItem, VerticalItem, NavItem, PartnerLogo } from '../types';
+import { ServiceItem, VerticalItem, NavItem, PartnerLogo, SuccessCase } from '../types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Servicios', href: '#services' },
+  { label: 'Casos de Éxito', href: '#casos-exito' },
   // { label: 'Soluciones', href: '#verticals' },
   // { label: 'Demos', href: '#demos' },
   { label: 'Nosotros', href: '#about' },
@@ -86,6 +87,85 @@ export const VERTICALS: VerticalItem[] = [
     description: 'Soluciones de alto impacto visual y sonoro para mantener la energía y el engagement del cliente.',
     imageUrl: 'https://images.unsplash.com/photo-1596838132731-3301c3fd4317?q=80&w=1200&auto=format&fit=crop',
     features: ['Video Walls gigantes', 'Audio de alta fidelidad', 'Sistemas de seguridad CCTV']
+  },
+];
+
+export const SUCCESS_CASES: SuccessCase[] = [
+  {
+    id: 'rockfeller-unicenter',
+    title: 'Experiencia Inmersiva en Retail',
+    client: "Rock Feller's Unicenter",
+    location: 'Unicenter, Buenos Aires',
+    sector: 'Entretenimiento',
+    description:
+      'Instalación integral de audio y video de alto impacto para un espacio de entretenimiento de referencia en uno de los shoppings más importantes del país.',
+    tags: ['Audio Profesional', 'Video Wall', 'Control AV'],
+    imageUrl: '/images/services/vertical.webp',
+    videoUrl: '/videos/Instalacion-RockFellerUnicenter.mp4',
+    featured: true,
+    year: '2025',
+  },
+  {
+    id: 'bose-oficina',
+    title: 'Audio Profesional Corporativo',
+    client: 'Oficinas Corporativas',
+    location: 'CABA, Argentina',
+    sector: 'Corporativo',
+    description:
+      'Diseño e implementación de sistemas Bose Professional para salas de reunión y espacios colaborativos con cobertura sonora uniforme.',
+    tags: ['Bose Professional', 'Salas de Reunión', 'Acústica'],
+    imageUrl: '/images/services/workspace.webp',
+    videoUrl: '/videos/Bose-Oficina.mp4',
+    year: '2025',
+  },
+  {
+    id: 'criba',
+    title: 'Integración AV Corporativa',
+    client: 'Criba',
+    location: 'Buenos Aires, Argentina',
+    sector: 'Corporativo',
+    description:
+      'Solución llave en mano de videoconferencia, control y cableado estructurado para modernizar la infraestructura tecnológica del entorno de trabajo.',
+    tags: ['Videoconferencia', 'Control Unificado', 'Cableado'],
+    imageUrl: '/images/services/partnership.webp',
+    videoUrl: '/videos/Instalacion-Criba.mp4',
+    year: '2024',
+  },
+  {
+    id: 'workspace-hybrid',
+    title: 'Espacios de Colaboración Híbrida',
+    client: 'Empresa Multinacional',
+    location: 'Argentina',
+    sector: 'Corporativo',
+    description:
+      'Transformación de open office y huddle rooms con tecnología Zoom Rooms y Logitech para equipos presenciales y remotos.',
+    tags: ['Zoom Rooms', 'Logitech', 'Huddle Rooms'],
+    imageUrl: '/images/services/cloud.webp',
+    year: '2024',
+  },
+  {
+    id: 'signage-retail',
+    title: 'Señalización Digital Retail',
+    client: 'Cadena Comercial',
+    location: 'Gran Buenos Aires',
+    sector: 'Retail',
+    description:
+      'Despliegue de pantallas y gestión de contenidos para comunicación dinámica en puntos de venta y espacios de alto tráfico.',
+    tags: ['Digital Signage', 'CMS', 'Retail'],
+    imageUrl: '/images/services/msp.webp',
+    year: '2024',
+  },
+  {
+    id: 'home-cinema',
+    title: 'Cine en Casa Premium',
+    client: 'Residencia Privada',
+    location: 'Zona Norte, Buenos Aires',
+    sector: 'Residencial',
+    description:
+      'Sala de cine en casa con proyección 4K, audio envolvente y automatización domótica integrada con control por voz.',
+    tags: ['Home Cinema', 'Domótica', '4K'],
+    imageUrl: '/images/services/home.webp',
+    year: '2024',
   },
 ];
 
