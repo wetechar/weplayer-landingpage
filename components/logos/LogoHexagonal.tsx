@@ -14,7 +14,7 @@ interface LogoHexagonalProps {
 }
 
 const LogoHexagonal: React.FC<LogoHexagonalProps> = ({
-  size = 'w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 xl:w-80 xl:h-80',
+  size = 'w-48 h-48 md:w-60 md:h-60 lg:w-60 lg:h-60 xl:w-70 xl:h-70',
   color = 'currentColor',
   viewBox = '400 300 600 700',
   className = '',
