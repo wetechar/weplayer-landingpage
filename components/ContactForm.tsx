@@ -142,7 +142,7 @@ const ContactForm: React.FC = () => {
   return (
     <section
       id='contact'
-      className='py-24 bg-linear-to-br from-slate-50 to-slate-100 scroll-mt-[112px]'
+      className='py-24 bg-linear-to-br from-slate-50 to-slate-100 scroll-mt-[70px]'
     >
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
         <motion.div
@@ -373,10 +373,6 @@ const ContactForm: React.FC = () => {
                       >
                         ingenieria@wetechar.com
                       </a>
-                    </p>
-                    <p className='text-red-600 text-xs mt-2 italic'>
-                      Nota: Asegúrate de que el servidor de la API esté
-                      corriendo en el puerto 3001.
                     </p>
                   </div>
                 </motion.div>

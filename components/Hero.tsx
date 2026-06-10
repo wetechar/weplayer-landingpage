@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
         // Esperar un momento para confirmar la intención de scroll (mínimo 50px de scroll)
         if (Math.abs(scrollDelta) > 5) {
           scrollTimeoutRef.current = setTimeout(() => {
-            const nextSection = document.getElementById('partners');
+            const nextSection = document.getElementById('about');
             if (
               nextSection &&
               !isScrolling &&
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
               setIsScrolling(true);
 
               // Calcular posición objetivo (centrar el siguiente componente)
-              const targetPosition = nextSection.offsetTop - 112; // Ajuste para el navbar (min-h-[112px])
+              const targetPosition = nextSection.offsetTop - 60; // Ajuste para el navbar
 
               // Scroll suave hacia el siguiente componente
               window.scrollTo({
@@ -129,7 +129,7 @@ const Hero: React.FC = () => {
                 <span className='block text-4xl md:text-5xl  mb-2'>
                   CREEMOS EN
                 </span>
-                <span className='block text-54xl md:text-5xl  mb-2'>
+                <span className='block text-4xl md:text-5xl  mb-2'>
                   EL PODER
                 </span>
                 <span className='block text-4xl md:text-5xl  mb-2'>

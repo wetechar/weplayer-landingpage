@@ -53,8 +53,8 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-6">Compañía</h4>
             <ul className="space-y-3 text-sm">
               <li><a href="#about" className="hover:text-brand-primary transition-colors">Sobre Nosotros</a></li>
-              <li><a href="#verticals" className="hover:text-brand-primary transition-colors">Casos de Éxito</a></li>
-              <li><a href="#partners" className="hover:text-brand-primary transition-colors">Partners</a></li>
+              <li><a href="#casos-exito" className="hover:text-brand-primary transition-colors">Casos de Éxito</a></li>
+              <li><a href="#services" className="hover:text-brand-primary transition-colors">Partners</a></li>
               <li><a href="#contact" className="hover:text-brand-primary transition-colors">Carreras</a></li>
               <li><a href="#contact" className="hover:text-brand-primary transition-colors">Blog</a></li>
             </ul>

@@ -33,14 +33,14 @@ export default function HeroVideo() {
       <div className='absolute inset-0 bg-black/20 z-10' />
 
       {/* LogoVector centrado - La estrella */}
-      <div className='absolute inset-0 flex items-end justify-center md: pb-10 lg: xl: z-20'>
+      <div className='absolute inset-0 flex items-end justify-center pb-10 z-20'>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
         >
           <LogoVector
-            size='w-40 h-40 md:w-40 md:h-40 w-40 lg:h-40 lg:w-40 xl:w-50 xl:h-50'
+            size='w-40 h-40 md:w-40 md:h-40 lg:w-40 lg:h-40 xl:w-48 xl:h-48'
             priority={true}
           />
         </motion.div>

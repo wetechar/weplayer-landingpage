@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu, X, LogIn, LogOut, User, ArrowLeft, Home } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, User, ArrowLeft } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { NAV_ITEMS } from '@/data/constants';

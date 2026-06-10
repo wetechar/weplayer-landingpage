@@ -101,7 +101,6 @@ export const SUCCESS_CASES: SuccessCase[] = [
       'Instalación integral de audio y video de alto impacto para un espacio de entretenimiento de referencia en uno de los shoppings más importantes del país.',
     tags: ['Audio Profesional', 'Video Wall', 'Control AV'],
     imageUrl: '/images/services/vertical.webp',
-    videoUrl: '/videos/Instalacion-RockFellerUnicenter.mp4',
     featured: true,
     year: '2025',
   },
@@ -115,7 +114,6 @@ export const SUCCESS_CASES: SuccessCase[] = [
       'Diseño e implementación de sistemas Bose Professional para salas de reunión y espacios colaborativos con cobertura sonora uniforme.',
     tags: ['Bose Professional', 'Salas de Reunión', 'Acústica'],
     imageUrl: '/images/services/workspace.webp',
-    videoUrl: '/videos/Bose-Oficina.mp4',
     year: '2025',
   },
   {
@@ -128,7 +126,6 @@ export const SUCCESS_CASES: SuccessCase[] = [
       'Solución llave en mano de videoconferencia, control y cableado estructurado para modernizar la infraestructura tecnológica del entorno de trabajo.',
     tags: ['Videoconferencia', 'Control Unificado', 'Cableado'],
     imageUrl: '/images/services/partnership.webp',
-    videoUrl: '/videos/Instalacion-Criba.mp4',
     year: '2024',
   },
   {

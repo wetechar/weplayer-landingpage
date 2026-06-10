@@ -8,7 +8,7 @@ const ContactCTA: React.FC = () => {
   return (
     <section
       id='contact-cta'
-      className='py-24 bg-brand-primary relative overflow-hidden scroll-mt-[112px]'
+      className='py-24 bg-brand-primary relative overflow-hidden scroll-mt-[70px]'
     >
       {/* Abstract patterns */}
       <div className='absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-white/10 blur-3xl' />
