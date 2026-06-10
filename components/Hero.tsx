@@ -109,7 +109,9 @@ const Hero: React.FC = () => {
       {/* Sombra muy leve en el fondo */}
       <div className='absolute inset-0 z-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.1)]' />
       {/* Content Container */}
-      <div className='relative grid grid-cols-1 grid-rows-2 z-10 w-full h-full'>
+      <div className='relative grid grid-cols-1 grid-rows-2 
+                                                md:grid-rows-[55%_45%]
+                                                w-full h-full'>
         {/* Video Section - Full Width */}
         <div className='flex items-center justify-center w-full h-full'>
           <HeroVideo />
@@ -124,16 +126,16 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
               <h1 className='text-white font-black uppercase leading-tight mb-6'>
-                <span className='block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2'>
+                <span className='block text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-2'>
                   CREEMOS EN
                 </span>
-                <span className='block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2'>
+                <span className='block text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-2'>
                   EL PODER
                 </span>
-                <span className='block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-2'>
+                <span className='block text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-2'>
                   DE CONECTAR
                 </span>
-                <span className='block text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6'>
+                <span className='block text-4xl md:text-4xl lg:text-5xl xl:text-6xl mb-6'>
                   PERSONAS
                 </span>
               </h1>
