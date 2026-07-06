@@ -14,9 +14,10 @@ import { ServiceItem, VerticalItem, NavItem, PartnerLogo, SuccessCase } from '..
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Servicios', href: '#services' },
   { label: 'Casos de Éxito', href: '#casos-exito' },
+  { label: 'Nosotros', href: '#about' },
+  { label: 'DevBlog', href: '/devblog' },
   // { label: 'Soluciones', href: '#verticals' },
   // { label: 'Demos', href: '#demos' },
-  { label: 'Nosotros', href: '#about' },
   // { label: 'Tienda', href: '/shop' },
   { label: 'Contacto', href: '#contact' },
 ];

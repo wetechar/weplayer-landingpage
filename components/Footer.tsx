@@ -1,14 +1,20 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Hexagon, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const [currentYear, setCurrentYear] = useState<number | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear());
   }, []);
+
+  // El DevBlog tiene su propio footer
+  if (pathname?.startsWith('/devblog')) return null;
+
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

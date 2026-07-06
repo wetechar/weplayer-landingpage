@@ -17,6 +17,10 @@ const Navbar: React.FC = () => {
   const isShopRoute =
     pathname?.startsWith('/shop') || pathname?.startsWith('/product');
 
+  // El DevBlog tiene su propia navegación
+  const isDevBlogRoute = pathname?.startsWith('/devblog');
+  if (isDevBlogRoute) return null;
+
   // Filtrar items de navegación - excluir "Tienda" cuando estamos en shop
   const navItems = isShopRoute
     ? NAV_ITEMS.filter((item) => {
